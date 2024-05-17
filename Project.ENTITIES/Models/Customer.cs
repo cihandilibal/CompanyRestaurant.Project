@@ -8,5 +8,10 @@ namespace Project.ENTITIES.Models
 {
     public class Customer : BaseEntity
     {
-    }
+        public string CustomerName {get;set;}
+        public string CustomerSurName { get; set; }
+        public int MobileNo { get; set; }
+        public 
 }
+}
+
