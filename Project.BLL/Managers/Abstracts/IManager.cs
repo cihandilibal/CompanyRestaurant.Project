@@ -6,11 +6,11 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.DAL.Repositories.Abstracts
+namespace Project.BLL.Managers.Abstracts
 {
-    public interface IRepository<T> where T: IEntity
+    public interface IManager<T> where T:IEntity
     {
-        //List Command
+        //List Commands
 
         List<T> GetAll();
         List<T> GetActives();
@@ -18,17 +18,18 @@ namespace Project.DAL.Repositories.Abstracts
         List<T> GetPassives();
         List<T> GetModifieds();
 
-        //Modify Commands  
-        void Add(T item);
+        //Modify Commands
+        string Add(T item);
         Task AddAsync(T item);
-        Task AddRangeAsync(List<T> list);
-        void AddRange(List<T> list);
+        Task<string> AddRangeAsync(List<T> list);
+        string AddRange(List<T> list);
         void Delete(T item);
         void DeleteRange(List<T> list);
         Task UpdateAsync(T item);
         Task UpdateRangeAsync(List<T> list);
-        void Destroy(T item);
-        void DestroyRange(List<T> list);
+        string Destroy(T item);
+        string DestroyRange(List<T> list);
+        List<string> DestroyRangeWithText(List<T> list);
 
         //Linq Commands
         List<T> Where(Expression<Func<T, bool>> exp);
@@ -37,17 +38,12 @@ namespace Project.DAL.Repositories.Abstracts
         T FirstOrDefault(Expression<Func<T, bool>> exp);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> exp);
 
-        object Select(Expression<Func<T, object>> exp); 
-        IQueryable<X> Select<X>(Expression<Func<T, X>> exp); 
-      
+        object Select(Expression<Func<T, object>> exp);
+        IQueryable<X> Select<X>(Expression<Func<T, X>> exp);
+
         //Find Commands
         Task<T> FindAsync(int id);
-
         List<T> GetLastDatas(int count);
         List<T> GetFirstDatas(int count);
-
-
-     
-
     }
 }

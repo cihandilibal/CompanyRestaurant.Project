@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\Concretes\" />
+    <ProjectReference Include="..\Project.CONF\Project.CONF.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Project.CONF\Project.CONF.csproj" />
+    <Folder Include="Extension\" />
   </ItemGroup>
 
 </Project>
