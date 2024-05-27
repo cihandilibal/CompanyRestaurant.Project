@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Repositories.Abstracts
 {
-    public interface IAddtionRepository:IRepository<Addition>
+    public interface IAdditionRepository:IRepository<Addition>
     {
     }
 }

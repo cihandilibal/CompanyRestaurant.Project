@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Repositories.Concretes
 {
-    public class AdditionRepository:BaseRepository<Addition>, IAddtionRepository
+    public class AdditionRepository:BaseRepository<Addition>, IAdditionRepository
     {
         public AdditionRepository(MyContext db) : base(db)
         {
