@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Project.DAL\Project.DAL.csproj" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ServiceInjections\" />
+    <ProjectReference Include="..\Project.DAL\Project.DAL.csproj" />
   </ItemGroup>
 
 </Project>

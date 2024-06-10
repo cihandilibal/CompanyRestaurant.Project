@@ -1,9 +1,26 @@
-var builder = WebApplication.CreateBuilder(args);
+using Project.BLL.ServiceInjections;
+
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(x =>
+{
+    x.IdleTimeout = TimeSpan.FromMinutes(10);
+    x.Cookie.HttpOnly = true; 
+    x.Cookie.IsEssential = true;
+});
+
+builder.Services.AddIdentityServices();
+builder.Services.AddDbContextService();
+builder.Services.AddManagerServices();
+builder.Services.AddRepServices();
+
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -13,6 +30,9 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
