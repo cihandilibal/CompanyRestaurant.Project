@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.Managers.Abstracts
 {
-    public interface ICustomerManager:IManager<Customer>
+    public interface ICustomerManager : IManager<Customer>
     {
+        Task UpdateAsync(Project.COREMVC.Models.ViewModels.CreateCustomerRequestModel customer);
+        Task UpdateAsync(Project.COREMVC.Models.ViewModels.CreateCustomerRequestModel customer);
+        Task UpdateRangeAsync(Project.COREMVC.Models.Customers.ResponseModels.CustomerResponseModel item);
     }
 }

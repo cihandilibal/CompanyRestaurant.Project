@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Models
 {
-    public class Table:BaseEntity
+    public class Table: BaseEntity
     {
+        public int TableNo { get; set; }
+        public string Status { get; set; }
+
     }
 }
