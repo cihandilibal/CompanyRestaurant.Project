@@ -16,10 +16,11 @@ namespace Project.BLL.ServiceInjections
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>(); 
-            services.AddScoped<IAdditionRepository, AdditionRepository>(); 
+            services.AddScoped<ICategoryRepository, CategoryRepository>(); 
             services.AddScoped<IAppUserRepository, AppUserRepository>(); 
             services.AddScoped<ITableRepository, TableRepository>(); 
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 
             return services;
         }

@@ -20,8 +20,9 @@ namespace Project.BLL.ServiceInjections
             services.AddScoped<IEmployeeManager, EmployeeManager>();
             services.AddScoped<ICustomerManager, CustomerManager>();
             services.AddScoped<IOrderManager, OrderManager>();
-            services.AddScoped<IAdditionManager, AdditionManager>();
+            services.AddScoped<ICategoryManager, CategoryManager>();
             services.AddScoped<ITableManager, TableManager>();
+            services.AddScoped<IOrderDetailManager, OrderDetailManager>();
             return services;
        }
     }
