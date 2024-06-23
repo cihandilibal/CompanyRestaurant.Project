@@ -30,6 +30,7 @@
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Employee\Models\" />
     <Folder Include="Areas\Employee\Views\" />
+    <Folder Include="Models\AppUsers\ResponseModels\" />
     <Folder Include="Views\Customer\" />
     <Folder Include="Views\Category\" />
     <Folder Include="Views\Table\" />
