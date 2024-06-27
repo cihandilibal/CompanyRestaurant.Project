@@ -21,20 +21,30 @@ namespace Project.DAL.ContextClasses
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new AppUserConfiguration());
+            builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new CustomerConfiguration());
             builder.ApplyConfiguration(new EmployeeConfiguration());
             builder.ApplyConfiguration(new OrderConfiguration());
-            builder.ApplyConfiguration(new TableConfiguration());
-            builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new OrderDetailConfiguration());
+            builder.ApplyConfiguration(new ProductConfiguration());
+            builder.ApplyConfiguration(new RecipeConfiguration());
+            builder.ApplyConfiguration(new IngredientConfiguration());
+            builder.ApplyConfiguration(new RecipeDetailConfiguration());
+            builder.ApplyConfiguration(new TableConfiguration());
         }
 
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Table> Tables { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<RecipeDetail> RecipeDetails { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Table> Tables { get; set; }
+   
+       
     }
 }

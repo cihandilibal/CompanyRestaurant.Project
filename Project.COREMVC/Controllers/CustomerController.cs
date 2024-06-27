@@ -48,7 +48,7 @@ namespace Project.COREMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCustomer(CustomerResponseModel item)
+        public async Task<IActionResult> UpdateCustomer()
         {
             
 

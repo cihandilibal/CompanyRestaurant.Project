@@ -25,10 +25,7 @@ namespace Project.BLL.Managers.Concretes
 
         public virtual string Add(T item)
         {
-            //SaatEkle(DTO)
-            SaatEkle(item);
-
-            //Mapping => DTO => DomainEntity
+             SaatEkle(item);
             _iRep.Add(item);
             return "Ekleme basarılıdır";
 

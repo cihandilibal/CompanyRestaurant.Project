@@ -17,12 +17,17 @@ namespace Project.BLL.ServiceInjections
             services.AddScoped(typeof(IManager<>), typeof(BaseManager<>));
 
             services.AddScoped<IAppUserManager, AppUserManager>();
-            services.AddScoped<IEmployeeManager, EmployeeManager>();
-            services.AddScoped<ICustomerManager, CustomerManager>();
-            services.AddScoped<IOrderManager, OrderManager>();
             services.AddScoped<ICategoryManager, CategoryManager>();
-            services.AddScoped<ITableManager, TableManager>();
+            services.AddScoped<ICustomerManager, CustomerManager>();
+            services.AddScoped<IEmployeeManager, EmployeeManager>();
+            services.AddScoped<IOrderManager,    OrderManager>();
             services.AddScoped<IOrderDetailManager, OrderDetailManager>();
+            services.AddScoped<IProductManager, ProductManager>();
+            services.AddScoped<IRecipeManager, RecipeManager>();
+            services.AddScoped<IIngredientManager, IngredientManager>();
+            services.AddScoped<IRecipeDetailManager, RecipeDetailManager>();
+            services.AddScoped<ITableManager, TableManager>();
+            
             return services;
        }
     }

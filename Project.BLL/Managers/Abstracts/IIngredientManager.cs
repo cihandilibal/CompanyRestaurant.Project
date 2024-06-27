@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.Managers.Abstracts
 {
-    public interface ICustomerManager : IManager<Customer>
-    {
-       
-    }
+     public interface IIngredientManager:IManager<Ingredient>
+     {
+        public decimal Cost();
+     }
 }

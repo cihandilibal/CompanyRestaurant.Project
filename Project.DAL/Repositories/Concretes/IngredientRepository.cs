@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Repositories.Concretes
 {
-    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
+    public class IngredientRepository : BaseRepository<Ingredient>, IIngredientRepository
     {
-        public CategoryRepository(MyContext db) : base(db)
+        public IngredientRepository(MyContext db) : base(db)
         {
         }
     }

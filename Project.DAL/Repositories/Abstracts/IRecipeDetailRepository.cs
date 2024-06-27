@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.BLL.Managers.Abstracts
+namespace Project.DAL.Repositories.Abstracts
 {
-    public interface ICustomerManager : IManager<Customer>
+    public interface IRecipeDetailRepository: IRepository<RecipeDetail>
     {
-       
+
     }
 }

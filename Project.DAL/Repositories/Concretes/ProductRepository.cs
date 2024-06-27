@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Repositories.Concretes
 {
-    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
+    public class ProductRepository: BaseRepository<Product>, IProductRepository
     {
-        public CategoryRepository(MyContext db) : base(db)
+        public ProductRepository(MyContext db): base(db)
         {
+
         }
+    
     }
 }

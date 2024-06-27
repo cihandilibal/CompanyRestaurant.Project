@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Project.BLL.Managers.Abstracts;
 using Project.BLL.Managers.Concretes;
-using Project.COREMVC.Models.Categories.RequestModels;
-using Project.COREMVC.Models.Categories.ResponseModels;
+using Project.COREMVC.Areas.Manager.Models.Categories.RequestModels;
 using Project.ENTITIES.Models;
 
-namespace Project.COREMVC.Controllers
+namespace Project.COREMVC.Areas.Admin.Controllers
 {
+    [Area("Manager")]
+    [Authorize(Roles = "Manager")]
     public class CategoryController : Controller
     {
         readonly ICategoryManager _categoryManager;
@@ -17,8 +19,7 @@ namespace Project.COREMVC.Controllers
         }
         public IActionResult Index()
         {
-            return View
-                (_categoryManager.GetAll());
+            return View (_categoryManager.GetAll());
         }
 
         public IActionResult CreateCategory()
@@ -47,7 +48,6 @@ namespace Project.COREMVC.Controllers
             TempData["Message"] = _categoryManager.Destroy(await _categoryManager.FindAsync(id));
             return RedirectToAction("Index");
         }
-       
 
     }
 }
