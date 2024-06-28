@@ -31,9 +31,15 @@
     <Folder Include="Areas\Manager\Views\Employee\" />
     <Folder Include="Areas\Manager\Views\Product\" />
     <Folder Include="Models\AppUsers\ResponseModels\" />
+    <Folder Include="Models\Additions\" />
+    <Folder Include="Models\Payments\" />
     <Folder Include="Models\RecipeDetails\ResponseModels\" />
     <Folder Include="Models\Recipes\ResponseModels\" />
     <Folder Include="Views\Customer\" />
+    <Folder Include="Views\Addition\" />
+    <Folder Include="Views\Ingredient\" />
+    <Folder Include="Views\Payment\" />
+    <Folder Include="Views\Recipe\" />
     <Folder Include="Views\Order\" />
     <Folder Include="Views\Table\" />
   </ItemGroup>
