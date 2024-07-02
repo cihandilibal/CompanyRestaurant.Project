@@ -16,7 +16,6 @@ namespace Project.BLL.ServiceInjections
        {
             services.AddScoped(typeof(IManager<>), typeof(BaseManager<>));
 
-            services.AddScoped<IAdditionManager, AdditionManager>();
             services.AddScoped<IAppUserManager, AppUserManager>();
             services.AddScoped<ICategoryManager, CategoryManager>();
             services.AddScoped<ICustomerManager, CustomerManager>();
@@ -28,7 +27,7 @@ namespace Project.BLL.ServiceInjections
             services.AddScoped<IRecipeManager, RecipeManager>();
             services.AddScoped<IIngredientManager, IngredientManager>();
             services.AddScoped<IRecipeDetailManager, RecipeDetailManager>();
-            services.AddScoped<ITableManager, TableManager>();
+           services.AddScoped<ITableManager, TableManager>();
             
             return services;
        }

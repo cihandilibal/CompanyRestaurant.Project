@@ -15,39 +15,49 @@ namespace Project.COREMVC.Controllers
         {
             _tableManager = tableManager;
         }
-        public IActionResult Index()
+        public IActionResult Tables()
         {
             return View(_tableManager.GetAll());
         }
 
-        public IActionResult CreateCustomer()
+        public IActionResult AddTable()
         {
             return View();
         }
 
         [HttpPost]
 
-        public async Task<IActionResult> CreateCustomer(CreateTableRequestModel item)
+        public async Task<IActionResult> AddTable(CreateTableRequestModel item)
         {
            Table t = new()
            { 
-
-                TableNo = item.TableNo,
+               TableNo = item.TableNo,
                 Status = item.Status
            };
             await _tableManager.AddAsync(t);
-            return RedirectToAction("Index");
+            return RedirectToAction("Tables");
         }
+        public async Task<IActionResult> DeleteTable(int id)
+        {
+            _tableManager.Delete(await _tableManager.FindAsync(id));
+            return RedirectToAction("Tables");
+        }
+        public async Task<IActionResult> DestroyTable(int id)
+        {
+            _tableManager.Delete(await _tableManager.FindAsync(id));
+            return RedirectToAction("Tables");
 
+        }
         public async Task<IActionResult> UpdateTable(int id)
         {
             return View(await _tableManager.FindAsync(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateTable(TableResponseModel item)
+        public async Task<IActionResult> UpdateTable(Table item)
         {
-
+            await _tableManager.UpdateAsync(item);
+            return RedirectToAction("Tables");
 
         }
 

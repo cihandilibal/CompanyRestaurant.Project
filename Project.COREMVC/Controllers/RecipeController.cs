@@ -31,14 +31,31 @@ namespace Project.COREMVC.Controllers
             
            Recipe r = new Recipe()
            {
-              ID = item.ID,
               Name = item.Name,
-              Instruction = item.Instruction
-             
            };
            await _recipeManager.AddAsync(r);
            return View("Index");
         }
+        public async Task<IActionResult> DeleteRecipe(int id)
+        {
+            _recipeManager.Delete(await _recipeManager.FindAsync(id));
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> DestroyRecipe(int id)
+        {
+            _recipeManager.Destroy(await _recipeManager.FindAsync(id));
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> UpdateRecipe(int id)
+        {
+            return View(await _recipeManager.FindAsync(id));
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateCategory(Recipe recipe)
+        {
+            await _recipeManager.UpdateAsync(recipe);
+            return RedirectToAction("Index");
+        }
     }
 }

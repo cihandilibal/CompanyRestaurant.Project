@@ -1,0 +1,21 @@
+﻿@model Recipe
+
+<form asp-action="UpdateRecipe" asp-controller="Recipe" method="post" class="p-3 w-75 m-auto">
+
+    <input type="hidden" asp-for="ID" />
+    <div class="mb-3">
+        <label>Recete ID giriniz</label>
+        <input asp-for="ID" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Recete adı giriniz</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary">Urun Recetesi Güncelle</button>
+    </div>
+
+
+</form>

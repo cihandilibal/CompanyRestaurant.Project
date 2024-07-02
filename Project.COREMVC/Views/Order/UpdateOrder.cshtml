@@ -1,0 +1,27 @@
+﻿@model Order
+
+<form asp-action="UpdateOrder" asp-controller="Order" method="post" class="p-3 w-75 m-auto">
+
+    <input type="hidden" asp-for="ID" />
+    <div class="mb-3">
+        <label>Siparis ID giriniz</label>
+        <input asp-for="ID" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Masa numarası giriniz</label>
+        <input asp-for="TableNo" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Siparis zamanı giriniz</label>
+        <input asp-for="OrderTime" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary">Siparis Güncelle</button>
+    </div>
+
+
+</form>
+

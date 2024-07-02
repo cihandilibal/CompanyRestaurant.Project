@@ -2,9 +2,9 @@
 {
     public class CreateCustomerRequestModel
     {
-       
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public int MobileNo { get; set; }
+       public int ID { get; set; }
+       public string FirstName { get; set; }
+       public string LastName { get; set; }
+       public string MobilePhone { get; set; }
     }
 }

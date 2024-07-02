@@ -1,0 +1,30 @@
+﻿@model Ingredient
+
+<form asp-action="UpdateIngredient" asp-controller="Ingredient" method="post" class="p-3 w-75 m-auto">
+
+    <input type="hidden" asp-for="ID" />
+    <div class="mb-3">
+        <label> Malzeme adı giriniz</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Miktar giriniz</label>
+        <input asp-for="Amount" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>"Birim giriniz</label>
+        <input asp-for="Unit" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+       <label>"Birim fiyat giriniz</label>
+        <input asp-for="UnitPrice" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary">Malzeme Ekle</button>
+    </div>
+
+</form>

@@ -20,7 +20,7 @@ namespace Project.DAL.ContextClasses
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ApplyConfiguration(new AdditionConfiguration());
+           
             builder.ApplyConfiguration(new AppUserConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new CustomerConfiguration());
@@ -35,7 +35,7 @@ namespace Project.DAL.ContextClasses
             builder.ApplyConfiguration(new TableConfiguration());
         }
 
-        public DbSet<Addition> Additions { get; set; }
+       
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }

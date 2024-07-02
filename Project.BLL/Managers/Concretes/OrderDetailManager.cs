@@ -16,5 +16,17 @@ namespace Project.BLL.Managers.Concretes
         {
             _odRep = odRep;
         }
+
+        public decimal PriceOfOrder()
+        {
+            decimal totalprice = 0;
+            List<OrderDetail> orderDetails = _odRep.GetActives();
+            foreach (OrderDetail item in orderDetails)
+            {
+                totalprice += item.Quantity * item.UnitPrice;
+            }
+            return totalprice;
+        }
+       
     }
 }

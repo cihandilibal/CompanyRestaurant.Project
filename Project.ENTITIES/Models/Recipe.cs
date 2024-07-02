@@ -10,8 +10,7 @@ namespace Project.ENTITIES.Models
     public class Recipe: BaseEntity
     {
         public string Name { get; set; }
-       public string Instruction { get; set; }
-
+      
         //Relational Properties
         public virtual ICollection<RecipeDetail> RecipeIngredients { get; set; }
 

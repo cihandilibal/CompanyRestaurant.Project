@@ -8,5 +8,9 @@ namespace Project.ENTITIES.Models
 {
     public class Payment: BaseEntity
     {
+        public int TableNo { get; set; }
+        public string PaymentType { get; set; }
+        public decimal Price { get; set; }
+        public  DateTime DateTime { get; set; }
     }
 }

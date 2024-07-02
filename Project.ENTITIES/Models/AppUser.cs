@@ -22,5 +22,6 @@ namespace Project.ENTITIES.Models
         public DateTime? ModifiedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
         public DataStatus Status { get; set; }
+       
     }
 }

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Models
 {
-    public class OrderDetail:BaseEntity
+    public class OrderDetail: BaseEntity
     {
         public int OrderID { get; set; }
         public int ProductID { get; set; }
         public int Quantity { get; set; }
+        public string Unit { get; set; }
         public decimal UnitPrice { get; set; }
 
         //Relational Properties

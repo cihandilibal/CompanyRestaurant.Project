@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.BLL.Managers.Abstracts;
 using Project.BLL.Managers.Concretes;
+using Project.COREMVC.Models.Ingredients.PageVMs;
 using Project.COREMVC.Models.Ingredients.RequestModels;
+using Project.COREMVC.Models.Ingredients.ResponseModels;
 using Project.ENTITIES.Models;
+using System.CodeDom;
 
 namespace Project.COREMVC.Controllers
 {
@@ -17,7 +20,22 @@ namespace Project.COREMVC.Controllers
         
         public IActionResult Index()
         {
-            return View(_ingredientManager.GetActives());
+            List<IngredientResponseModel> ingredients = _ingredientManager.Select(x => new IngredientResponseModel
+            {
+                Name = x.Name,
+                ID = x.ID,
+                Amount = x.Amount,
+                Unit = x.Unit,
+                UnitPrice = x.UnitPrice
+            }).ToList();
+            decimal totalCost = _ingredientManager.Cost();
+
+            IngredientsPageVM ipVm = new IngredientsPageVM()
+            {
+                Ingredients = ingredients,
+                TotalCost = totalCost
+            };
+            return View(ipVm);
         }
 
         public async Task<IActionResult> AddIngredient()
@@ -40,12 +58,12 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> DeleteIngredient(int id)
         {
-            _.Delete(await _ingredientManager.FindAsync(id));
+            _ingredientManager.Delete(await _ingredientManager.FindAsync(id));
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> DestroyCategory(int id)
         {
-            TempData["Message"] = _ingredientManager.Destroy(await _ingredientManager.FindAsync(id));
+            _ingredientManager.Destroy(await _ingredientManager.FindAsync(id));
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> UpdateIngredient(int id)
@@ -54,15 +72,13 @@ namespace Project.COREMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateIngredient()
+        public async Task<IActionResult> UpdateIngredient(Ingredient ingredient)
         {
-            return View();
+            await _ingredientManager.UpdateAsync(ingredient);
+            return RedirectToAction("Index");
+        }
+       
 
-        }
-        public IActionResult CalculateCost()
-        {
-            return View (_ingredientManager.Cost());
-        }
 
       
 

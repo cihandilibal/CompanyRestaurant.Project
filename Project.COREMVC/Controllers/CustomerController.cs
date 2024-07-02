@@ -17,7 +17,7 @@ namespace Project.COREMVC.Controllers
             _customerManager = customerManager;
         }
             
-        public IActionResult Index()
+        public IActionResult GetCustomers()
         {
             return View(_customerManager.GetAll());
         }
@@ -34,27 +34,38 @@ namespace Project.COREMVC.Controllers
             Customer c = new()
             {
                 
-                Name = item.Name,
+                FirstName = item.FirstName,
                 LastName = item.LastName,
-                MobileNo = item.MobileNo
+                MobilePhone = item.MobilePhone
             };
             await _customerManager.AddAsync(c);
-            return RedirectToAction("Index");
+            return RedirectToAction("GetCustomers");
         }
        
+        public async Task<IActionResult> DeleteCustomer(int id)
+        {
+            _customerManager.Delete(await _customerManager.FindAsync(id));
+            return RedirectToAction("GetCustomers");
+        }
+        public async Task<IActionResult> DestroyCustomer(int id)
+        {
+           _customerManager.Destroy(await _customerManager.FindAsync(id));
+            return RedirectToAction("GetCustomers");
+        }
+
         public async Task<IActionResult> UpdateCustomer(int id)
         {
             return View(await _customerManager.FindAsync(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCustomer()
+        public async Task<IActionResult> UpdateCustomer(Customer customer)
         {
-            
-
+            await _customerManager.UpdateAsync(customer);
+            return RedirectToAction("Index");
         }
 
-       
+
 
     }
 }

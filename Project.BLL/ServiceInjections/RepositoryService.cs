@@ -15,7 +15,6 @@ namespace Project.BLL.ServiceInjections
         {
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 
-            services.AddScoped<IAdditionRepository, AdditionRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();

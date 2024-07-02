@@ -8,23 +8,15 @@ using Project.COREMVC.Models.Orders.RequestModels;
 namespace Project.COREMVC.Controllers
 {
     public class OrderController : Controller
-    { 
-        readonly IProductManager _productManager;
-        readonly ICategoryManager _categoryManager;
+    {
         readonly IOrderManager _orderManager;
-        readonly IOrderDetailManager _orderDetailManager;
-        readonly IHttpClientFactory _httpClientFactory;
-
-        public OrderController(IProductManager productManager, ICategoryManager categoryManager, IOrderDetailManager orderDetailManager, IOrderManager orderManager, IHttpClientFactory httpClientFactory)
+       
+        public OrderController(IOrderManager orderManager)
         {
-            _productManager = productManager;
-            _categoryManager = categoryManager;
-            _orderDetailManager = orderDetailManager;
             _orderManager = orderManager;
-            _httpClientFactory = httpClientFactory;
+            
         }
-
-        public IActionResult Index()
+        public IActionResult ListOrders()
         {
             return View(_orderManager.GetActives());
         }
@@ -36,10 +28,40 @@ namespace Project.COREMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder(CreateOrderRequestModel model)
         {
-            return View();
+            Order o = new()
+            {
+
+                TableNo = model.TableNo,
+                OrderTime = model.OrderTime,
+            };
+
+            await _orderManager.AddAsync(o);
+            return RedirectToAction("ListOrders");
+        }
+        public async Task<IActionResult> DeleteOrder(int id)
+        {
+            _orderManager.Delete(await _orderManager.FindAsync(id));
+            return RedirectToAction("ListOrders");
+        }
+        public async Task<IActionResult> DestroyOrder(int id)
+        {
+            _orderManager.Destroy(await _orderManager.FindAsync(id));
+            return RedirectToAction("ListOrders");
+        }
+        public async Task<IActionResult> UpdateOrder(int id)
+        {
+            return View(await _orderManager.FindAsync(id));
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateOrder(Order item)
+        {
+            await _orderManager.UpdateAsync(item);
+            return RedirectToAction("ListOrders");
+        }
+       
 
+       
 
     }
 }

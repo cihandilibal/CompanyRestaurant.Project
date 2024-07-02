@@ -94,14 +94,14 @@ namespace Project.COREMVC.Controllers
             {
                 AppUser appUser = await _userManager.FindByNameAsync(model.UserName);
 
-                SignInResult result = await _signInManager.PasswordSignInAsync(appUser, model.Password, model.RememberMe, true);
+                SignInResult result = await _signInManager.PasswordSignInAsync(appUser, model.Password, true, true);
                
                 if (result.Succeeded)
                 {
                     IList<string> roles = await _userManager.GetRolesAsync(appUser);
-                    if (roles.Contains("Admin"))
+                    if (roles.Contains("Manager"))
                     {
-                        return RedirectToAction("Index", "Category", new { Area = "Admin" });
+                        return RedirectToAction("Index", new { Area = "Manager" });
                     }
                     else if (roles.Contains("Employee"))
                     {
@@ -115,8 +115,8 @@ namespace Project.COREMVC.Controllers
 
             return View(model);
         }
-        [Authorize(Roles = "Admin")]
-        public IActionResult AdminPanel()
+        [Authorize(Roles = "Manager")]
+        public IActionResult ManagerPanel()
         {
             return View();
         }

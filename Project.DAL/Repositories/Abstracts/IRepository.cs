@@ -41,13 +41,8 @@ namespace Project.DAL.Repositories.Abstracts
         IQueryable<X> Select<X>(Expression<Func<T, X>> exp); 
       
         //Find Commands
-        Task<T> FindAsync(int id);
-
         List<T> GetLastDatas(int count);
         List<T> GetFirstDatas(int count);
-
-
-     
-
+        Task<T> FindAsync(int id);
     }
 }

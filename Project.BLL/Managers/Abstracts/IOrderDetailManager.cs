@@ -9,5 +9,7 @@ namespace Project.BLL.Managers.Abstracts
 {
     public interface IOrderDetailManager : IManager<OrderDetail>
     {
+        public decimal PriceOfOrder();
     }
+    
 }
