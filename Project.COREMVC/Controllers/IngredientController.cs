@@ -38,7 +38,7 @@ namespace Project.COREMVC.Controllers
             return View(ipVm);
         }
 
-        public async Task<IActionResult> AddIngredient()
+        public IActionResult AddIngredient()
         {
             return View();
         }
@@ -51,7 +51,7 @@ namespace Project.COREMVC.Controllers
                 Name= item.Name,
                 Amount= item.Amount,
                 Unit= item.Unit,
-                UnitPrice= item.UnitPrice,
+                UnitPrice= item.UnitPrice
             };
             await _ingredientManager.AddAsync(i);
             return RedirectToAction("Index");
@@ -77,11 +77,5 @@ namespace Project.COREMVC.Controllers
             await _ingredientManager.UpdateAsync(ingredient);
             return RedirectToAction("Index");
         }
-       
-
-
-      
-
-
     }
 }

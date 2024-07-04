@@ -10,11 +10,13 @@ namespace Project.ENTITIES.Models
     {  
         public int TableNo { get; set; }
         public DateTime OrderTime { get; set; }
-        public decimal PriceOfOrder { get; set; }
-
+       
         //Relational Properties
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual Payment Payment { get; set; }
        
+
+
 
     }
 }

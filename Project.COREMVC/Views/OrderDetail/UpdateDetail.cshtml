@@ -2,10 +2,11 @@
 
 <form asp-action="UpdateDetail" asp-controller="OrderDetail" method="post" class="p-3 w-75 m-auto">
 
-    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="OrderID" />
+
     <div class="mb-3">
-        <label> Siparis ID giriniz</label>
-        <input asp-for="OrderID" class="form-control" />
+        <label> Urun ID giriniz</label>
+        <input asp-for="ProductID" class="form-control" />
     </div>
 
     <div class="mb-3">
@@ -21,11 +22,6 @@
     <div class="mb-3">
         <label>"Birim fiyat giriniz</label>
         <input asp-for="UnitPrice" class="form-control" />
-    </div>
-
-    <div class="mb-3">
-        <label>"Toplam siparis fiyatı giriniz</label>
-        <input asp-for="TotalPrice" class="form-control" />
     </div>
 
     <div class="mb-3">

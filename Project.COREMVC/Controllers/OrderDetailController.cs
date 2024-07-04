@@ -23,19 +23,19 @@ namespace Project.COREMVC.Controllers
             List<OrderDetailsResponseModel> orderDetails = _orderDetailManager.Select(x => new OrderDetailsResponseModel
             {
                 OrderID = x.OrderID,
-                ProductID =  x.ProductID,
+                ProductName =  x.Product.ProductName,
                 Quantity = x.Quantity,
                 Unit = x.Unit,
                 UnitPrice = x.UnitPrice
             }).ToList();
             decimal totalPrice = _orderDetailManager.PriceOfOrder();
 
-            OrderDetailsPageVM odpvm = new OrderDetailsPageVM()
+            OrderDetailsPageVM odpVm = new OrderDetailsPageVM()
             {
                 OrderDetails = orderDetails,
                 TotalPrice = totalPrice
             };
-            return View(odpvm);
+            return View(odpVm);
         }
            
         public IActionResult AddDetail()
@@ -49,6 +49,7 @@ namespace Project.COREMVC.Controllers
             OrderDetail od = new()
             {
                 OrderID = model.OrderID,
+                ProductID = model.ProductID,
                 Quantity = model.Quantity,
                 Unit = model.Unit,
                 UnitPrice = model.UnitPrice,

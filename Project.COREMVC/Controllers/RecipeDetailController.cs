@@ -19,7 +19,7 @@ namespace Project.COREMVC.Controllers
             return View(_recipeDetailManager.GetActives());
         }
 
-        public async Task<IActionResult> AddRecipeDetail()
+        public IActionResult AddRecipeDetail()
         {
             return View();
         }

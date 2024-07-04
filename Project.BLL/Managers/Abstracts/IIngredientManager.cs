@@ -9,6 +9,6 @@ namespace Project.BLL.Managers.Abstracts
 {
      public interface IIngredientManager:IManager<Ingredient>
      {
-        public decimal Cost();
+        decimal Cost();
      }
 }

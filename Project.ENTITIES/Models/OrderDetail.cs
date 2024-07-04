@@ -13,6 +13,7 @@ namespace Project.ENTITIES.Models
         public int Quantity { get; set; }
         public string Unit { get; set; }
         public decimal UnitPrice { get; set; }
+        
 
         //Relational Properties
         public virtual Order Order { get; set; }

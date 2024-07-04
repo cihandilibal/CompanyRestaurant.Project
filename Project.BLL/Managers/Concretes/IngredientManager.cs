@@ -20,8 +20,8 @@ namespace Project.BLL.Managers.Concretes
         public decimal Cost()
         {
             decimal cost = 0;
-            List<Ingredient> ingredients = _inRep.GetActives();
-            foreach (Ingredient item in ingredients)
+
+            foreach (Ingredient item in _inRep.GetActives())
             {
                 cost += item.UnitPrice * item.Amount;
             }

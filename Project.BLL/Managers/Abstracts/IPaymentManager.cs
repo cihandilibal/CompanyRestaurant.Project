@@ -9,5 +9,9 @@ namespace Project.BLL.Managers.Abstracts
 {
     public interface IPaymentManager: IManager<Payment>
     {
+       decimal GetDailyGiro(DateTime date);
+       decimal GetWeeklyGiro(DateTime startOfWeek);
+       decimal GetMonthlyGiro(int year, int month);
+
     }
 }

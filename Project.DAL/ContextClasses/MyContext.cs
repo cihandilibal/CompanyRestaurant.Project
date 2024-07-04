@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Project.CONF.Configurations;
+using Project.DAL.Extensions;
 using Project.ENTITIES.Models;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,14 @@ namespace Project.DAL.ContextClasses
             builder.ApplyConfiguration(new IngredientConfiguration());
             builder.ApplyConfiguration(new RecipeDetailConfiguration());
             builder.ApplyConfiguration(new TableConfiguration());
+            CategoryDataSeedExtension.SeedCategories(builder);
+            ProductDataSeedExtension.SeedProducts(builder);
+            IngredientDataSeedExtension.SeedIngredients(builder);
+            RecipeDataSeedExtension.SeedRecipes(builder);
+            RecipeDetailDataSeedExtension.SeedRecipDetails(builder);
+            UserRoleDataSeedExtension.SeedUsers(builder);
+            EmployeeDataSeedExtension.SeedEmployees(builder);
+            TableDataSeedExtension.SeedTables(builder);
         }
 
        

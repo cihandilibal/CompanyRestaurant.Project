@@ -28,11 +28,20 @@
     <Folder Include="Areas\Manager\Models\Employees\ResponseModels\" />
     <Folder Include="Models\AppUsers\ResponseModels\" />
     <Folder Include="Models\Categories\ResponseModels\" />
-    <Folder Include="Models\Payments\" />
     <Folder Include="Models\RecipeDetails\ResponseModels\" />
     <Folder Include="Models\Recipes\ResponseModels\" />
-    <Folder Include="Views\Product\" />
-    <Folder Include="Views\Payment\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\OuterTools\.github\codeql\codeql-config.yml" />
+    <None Include="wwwroot\OuterTools\.github\CONTRIBUTING.md" />
+    <None Include="wwwroot\OuterTools\.github\dependabot.yml" />
+    <None Include="wwwroot\OuterTools\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3.1-x.md" />
+    <None Include="wwwroot\OuterTools\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v4-x.md" />
+    <None Include="wwwroot\OuterTools\.github\workflows\ci.yml" />
+    <None Include="wwwroot\OuterTools\.github\workflows\codeql.yml" />
+    <None Include="wwwroot\OuterTools\.github\workflows\docs.yml" />
+    <None Include="wwwroot\OuterTools\.github\workflows\lint.yml" />
   </ItemGroup>
 
 </Project>

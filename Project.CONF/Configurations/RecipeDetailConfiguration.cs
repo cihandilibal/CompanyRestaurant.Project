@@ -13,6 +13,13 @@ namespace Project.CONF.Configurations
         public override void Configure(EntityTypeBuilder<RecipeDetail> builder)
         {
             base.Configure(builder);
+            base.Configure(builder);
+            builder.Ignore(x => x.ID);
+            builder.HasKey(x => new
+            {
+                x.IngredientID,
+                x.RecipeID
+            });
         }
     }
 }

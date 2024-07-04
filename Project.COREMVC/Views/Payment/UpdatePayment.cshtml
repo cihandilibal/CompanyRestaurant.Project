@@ -1,0 +1,33 @@
+﻿@model Payment
+
+<form asp-action="UpdatePayment" asp-controller="Payment" method="post" class="p-3 w-75 m-auto">
+
+    <input type="hidden" asp-for="ID" />
+    <div class="mb-3">
+        <label> Fiyat giriniz</label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Para birimi giriniz</label>
+        <select asp-for="Currency" class="form-control" />
+            <option value="₺">₺</option>
+            <option value="$">$</option>
+            <option value="£">£</option>
+    </div>
+
+    <div class="mb-3">
+        <label>"Tarih giriniz</label>
+        <input asp-for="Date" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>"Odeme metodu giriniz</label>
+        <input asp-for="PaymentMethod" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary">Odeme Ekle</button>
+    </div>
+   
+</form>
