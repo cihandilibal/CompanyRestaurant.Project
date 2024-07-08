@@ -1,30 +1,35 @@
-﻿@model Ingredient
+﻿@model UpdateIngredientPageVM
 
 <form asp-action="UpdateIngredient" asp-controller="Ingredient" method="post" class="p-3 w-75 m-auto">
 
-    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="UpdateIngredientVM.ID" />
     <div class="mb-3">
         <label> Malzeme adı giriniz</label>
-        <input asp-for="Name" class="form-control" />
+        <input asp-for="UpdateIngredientVM.Name" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Miktar giriniz</label>
-        <input asp-for="Amount" class="form-control" />
+        <input asp-for="UpdateIngredientVM.Amount" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Tahmini miktarı giriniz</label>
+        <input asp-for="UpdateIngredientVM.PredictedAmount" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>"Birim giriniz</label>
-        <input asp-for="Unit" class="form-control" />
+        <input asp-for="UpdateIngredientVM.Unit" class="form-control" />
     </div>
 
     <div class="mb-3">
        <label>"Birim fiyat giriniz</label>
-        <input asp-for="UnitPrice" class="form-control" />
+        <input asp-for="UpdateIngredientVM.UnitPrice" class="form-control" />
     </div>
 
     <div class="mb-3">
-        <button class="btn btn-primary">Malzeme Ekle</button>
+        <button class="btn btn-primary">Malzeme Güncelle</button>
     </div>
 
 </form>

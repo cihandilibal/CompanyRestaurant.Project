@@ -3,6 +3,8 @@ using Project.BLL.Managers.Abstracts;
 using Project.BLL.Managers.Concretes;
 using Project.ENTITIES.Models;
 using Project.COREMVC.Models.Orders.RequestModels;
+using Project.COREMVC.Models.Orders.ResponseModels;
+using Project.COREMVC.Models.Orders.PageVMs;
 
 
 namespace Project.COREMVC.Controllers
@@ -18,7 +20,20 @@ namespace Project.COREMVC.Controllers
         }
         public IActionResult ListOrders()
         {
-            return View(_orderManager.GetActives());
+            List<ListOrdersResponseModel> orders;
+
+            orders = _orderManager.Select(x => new ListOrdersResponseModel
+            {
+                ID = x.ID,
+                TableNo = x.TableNo,
+                OrderTime = x.OrderTime
+            }).ToList();
+
+            ListOrdersPageVM lopVm = new ListOrdersPageVM()
+            {
+                Orders = orders
+            };
+            return View(lopVm);
         }
         public IActionResult CreateOrder()
         {
@@ -26,13 +41,13 @@ namespace Project.COREMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder(CreateOrderRequestModel model)
+        public async Task<IActionResult> CreateOrder(CreateOrderPageVM model)
         {
             Order o = new()
             {
 
-                TableNo = model.TableNo,
-                OrderTime = model.OrderTime,
+                TableNo = model.CreateOrderRequestModel.TableNo,
+                OrderTime = model.CreateOrderRequestModel.OrderTime
             };
 
             await _orderManager.AddAsync(o);
@@ -50,13 +65,24 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> UpdateOrder(int id)
         {
-            return View(await _orderManager.FindAsync(id));
+            Order order = await _orderManager.FindAsync(id);
+            UpdateOrderVM updateOrderVM = new UpdateOrderVM();
+            updateOrderVM.ID = order.ID;
+            updateOrderVM.TableNo = order.TableNo;
+            updateOrderVM.OrderTime = order.OrderTime;
+            UpdateOrderPageVM uopVm= new UpdateOrderPageVM();
+            uopVm.UpdateOrderVM = updateOrderVM;
+            return View(uopVm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateOrder(Order item)
+        public async Task<IActionResult> UpdateOrder(UpdateOrderPageVM model)
         {
-            await _orderManager.UpdateAsync(item);
+            Order order = new Order();
+            order.ID = model.UpdateOrderVM.ID;
+            order.TableNo = model.UpdateOrderVM.TableNo;
+            order.OrderTime = model.UpdateOrderVM.OrderTime;
+            await _orderManager.UpdateAsync(order);
             return RedirectToAction("ListOrders");
         }
        

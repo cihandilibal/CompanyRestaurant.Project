@@ -1,5 +1,46 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model OrderDetailsPageVM
+
+<h1>
+    <span class="text-danger">@TempData["Message"]</span>
+</h1>
+
+<section class="panel">
+    <header class="panel-heading">
+        <h3> Siparis Detayları </h3>
+    </header>
+    <div class="panel-body">
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                <thead>
+                    <tr>
+                        <th>Siparis ID</th>
+                        <th>Urun Adı</th>
+                        <th>Urun Adedi</th>
+                        <th>Birimi</th>
+                        <th>Birim Fiyatı</th>
+                        <th class="hidden-phone">Guncelle</th>
+                        <th class="hidden-phone">Sil</th>
+                        <th class="hidden-phone">Yok Et</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (OrderDetailsResponseModel item in Model.OrderDetails)
+                    {
+                        <tr class="gradeX">
+                            <td>@item.OrderID</td>
+                            <td> @item.ProductName</td>
+                            <td> @item.Quantity</td>
+                            <td> @item.UnitPrice</td>
+                            <td> @item.Unit</td>
+                            <td class="center hidden-phone"><a asp-action="UpdateOrderDetail" asp-route-id="@item.OrderID" class="btn btn-warning">Güncelle</a></td>
+                            <td class="center hidden-phone"><a asp-action="DeleteOrderDetail" asp-route-id="@item.OrderID" class="btn btn-danger">Sil</a></td>
+                            <td class="center hidden-phone"><a asp-action="DestroyOrderDetail" asp-route-id="@item.OrderID" class="btn btn-danger">Yok et</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>

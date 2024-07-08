@@ -20,16 +20,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Project.BLL\Project.BLL.csproj" />
-    <ProjectReference Include="..\Project.COMMON\Project.COMMON.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Manager\Data\" />
-    <Folder Include="Areas\Manager\Models\Employees\ResponseModels\" />
-    <Folder Include="Models\AppUsers\ResponseModels\" />
-    <Folder Include="Models\Categories\ResponseModels\" />
-    <Folder Include="Models\RecipeDetails\ResponseModels\" />
-    <Folder Include="Models\Recipes\ResponseModels\" />
   </ItemGroup>
 
   <ItemGroup>

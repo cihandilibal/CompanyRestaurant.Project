@@ -1,32 +1,32 @@
-﻿@model RecipeDetailRequestModel
+﻿@model AddRecipeDetailPageVM
 <form asp-action="AddRecipeDetail" asp-controller="RecipeDetail" method="post" class="p-3 w-75 m-auto">
 
     <div class="mb-3">
-        <label>Recete ID giriniz</label>
-        <input asp-for="RecipeID" class="form-control" />
+        <label>Siparis ID giriniz</label>
+        <input asp-for="RecipeDetailRequestModel.RecipeID" class="form-control" />
     </div>
-
+ 
     <div class="mb-3">
         <label>Malzeme ID giriniz</label>
-        <input asp-for="IngredientID" class="form-control" />
+        <input asp-for="RecipeDetailRequestModel.IngredientID" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Talimat giriniz</label>
-        <input asp-for="Instruction" class="form-control" />
+        <input asp-for="RecipeDetailRequestModel.Instruction" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Malzeme miktarı giriniz</label>
-        <input asp-for="IngredientQuantity" class="form-control" />
+        <input asp-for="RecipeDetailRequestModel.IngredientQuantity" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Birim giriniz</label>
-        <input asp-for="Unit" class="form-control" />
+        <input asp-for="RecipeDetailRequestModel.Unit" class="form-control" />
     </div>
     <div class="mb-3">
-        <button class="btn btn-primary">ReceteDetayı Ekle</button>
+        <button class="btn btn-primary">Recete Icerigi Ekle</button>
     </div>
 
 

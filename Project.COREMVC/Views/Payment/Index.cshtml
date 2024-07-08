@@ -1,5 +1,46 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model PaymentsPageVM
+
+<h1>
+    <span class="text-danger">@TempData["Message"]</span>
+</h1>
+
+<section class="panel">
+    <header class="panel-heading">
+        <h3> Odemeler </h3>
+    </header>
+    <div class="panel-body">
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                <thead>
+                    <tr>
+                        <th>Odeme ID</th>
+                        <th>Tutar</th>
+                        <th>Para Birimi</th>
+                        <th>Tarih</th>
+                        <th>Siparis ID</th>
+                        <th class="hidden-phone">Guncelle</th>
+                        <th class="hidden-phone">Sil</th>
+                        <th class="hidden-phone">Yok Et</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (PaymentResponseModel item in Model.Payments)
+                    {
+                        <tr class="gradeX">
+                            <td>@item.ID</td>
+                            <td> @item.Price</td>
+                            <td> @item.Currency</td>
+                            <td> @item.Date</td>
+                            <td> @item.OrderID</td>
+                            <td class="center hidden-phone"><a asp-action="UpdatePayment" asp-route-id="@item.ID" class="btn btn-warning">Güncelle</a></td>
+                            <td class="center hidden-phone"><a asp-action="DeletePayment" asp-route-id="@item.ID" class="btn btn-danger">Sil</a></td>
+                            <td class="center hidden-phone"><a asp-action="DestroyPayment" asp-route-id="@item.ID" class="btn btn-danger">Yok et</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>

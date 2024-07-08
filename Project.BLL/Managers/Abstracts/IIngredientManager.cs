@@ -10,5 +10,8 @@ namespace Project.BLL.Managers.Abstracts
      public interface IIngredientManager:IManager<Ingredient>
      {
         decimal Cost();
+
+        string ControlIngredient(int id);
      }
+
 }

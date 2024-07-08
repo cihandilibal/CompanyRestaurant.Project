@@ -1,25 +1,25 @@
-﻿@model AddIngredientRequestModel
+﻿@model AddIngredientPageVM
 
 <form asp-action="AddIngredient" asp-controller="Ingredient" method="post" class="p-3 w-75 m-auto">
 
     <div class="mb-3">
         <label> Malzeme adı giriniz</label>
-        <input asp-for="Name" class="form-control" />
+        <input asp-for="AddIngredientRequestModel.Name" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Miktar giriniz</label>
-        <input asp-for="Amount" class="form-control" />
+        <input asp-for="AddIngredientRequestModel.Amount" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>"Birim giriniz</label>
-        <input asp-for="Unit" class="form-control" />
+        <input asp-for="AddIngredientRequestModel.Unit" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>"Birim fiyat giriniz</label>
-        <input asp-for="UnitPrice" class="form-control" />
+        <input asp-for="AddIngredientRequestModel.UnitPrice" class="form-control" />
     </div>
 
     <div class="mb-3">

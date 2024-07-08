@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Project.BLL.Managers.Concretes;
 using Project.COREMVC.Models;
-using Project.COREMVC.Models.AppUsers.RequestModels;
+using Project.COREMVC.Models.Users.PageVMs;
+using Project.COREMVC.Models.Users.RequestModels;
 using Project.DAL.Repositories.Abstracts;
 using Project.ENTITIES.Models;
 using System.Diagnostics;
@@ -12,6 +13,7 @@ using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Project.COREMVC.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -27,7 +29,6 @@ namespace Project.COREMVC.Controllers
             _roleManager = roleManager;
             _signInManager = signInManager;
         }
-
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -55,17 +56,17 @@ namespace Project.COREMVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Register(UserRegisterRequestModel model)
+        public async Task<IActionResult> Register(UserRegisterPageVM model)
         {
             if (ModelState.IsValid)
             {
                 AppUser appUser = new()
                 {
-                    UserName = model.UserName,
-                    Email = model.Email,
+                    UserName = model.UserRegisterRequestModel.UserName,
+                    Email = model.UserRegisterRequestModel.Email
                     
                 };
-                IdentityResult result = await _userManager.CreateAsync(appUser, model.Password);
+                IdentityResult result = await _userManager.CreateAsync(appUser, model.UserRegisterRequestModel.Password);
                 if (result.Succeeded)
                 {
                     IdentityRole<int> appRole = await _roleManager.FindByNameAsync("Employee");
@@ -88,13 +89,13 @@ namespace Project.COREMVC.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> SignIn(UserSignInRequestModel model)
+        public async Task<IActionResult> SignIn(UserSignInPageVM model)
         {
             if (ModelState.IsValid)
             {
-                AppUser appUser = await _userManager.FindByNameAsync(model.UserName);
+                AppUser appUser = await _userManager.FindByNameAsync(model.UserSignInRequestModel.UserName);
 
-                SignInResult result = await _signInManager.PasswordSignInAsync(appUser, model.Password, true, true);
+                SignInResult result = await _signInManager.PasswordSignInAsync(appUser, model.UserSignInRequestModel.Password, model.UserSignInRequestModel.RememberMe, true);
                
                 if (result.Succeeded)
                 {
@@ -126,9 +127,5 @@ namespace Project.COREMVC.Controllers
         {
             return View();
         }
-
-
     }
-
-    
 }   

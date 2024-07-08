@@ -2,7 +2,7 @@
 {
     public class PaymentRequestModel
     {
-        
+        public int OrderID { get; set; }
         public decimal Price { get; set; }
         public string Currency { get; set; }
         public DateTime Date { get; set; }

@@ -1,24 +1,24 @@
-﻿@model CreateProductRequestModel
+﻿@model CreateProductPageVM
 <form asp-action="CreateProduct" asp-controller="Product" method="post" class="p-3 w-75 m-auto">
 
     <div class="mb-3">
         <label> Kategori ID giriniz</label>
-        <input asp-for="CategoryID" class="form-control" />
+        <input asp-for="CreateProductRequestModel.CategoryID" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Urun adı giriniz</label>
-        <input asp-for="ProductName" class="form-control" />
+        <input asp-for="CreateProductRequestModel.ProductName" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>"Birim giriniz</label>
-        <input asp-for="Unit" class="form-control" />
+        <input asp-for="CreateProductRequestModel.Unit" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>"Birim fiyat giriniz</label>
-        <input asp-for="UnitPrice" class="form-control" />
+        <input asp-for="CreateProductRequestModel.UnitPrice" class="form-control" />
     </div>
 
     <div class="mb-3">

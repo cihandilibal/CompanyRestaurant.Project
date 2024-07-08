@@ -1,17 +1,17 @@
-﻿@model Table
+﻿@model UpdateTablePageVM
 
 <form asp-action="AddTable" asp-controller="Table" method="post" class="p-3 w-75 m-auto">
 
     
-    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="UpdateTableVM.ID" />
     <div class="mb-3">
         <label>Masa numarası giriniz</label>
-        <input asp-for="TableNo" class="form-control" />
+        <input asp-for="UpdateTableVM.TableNo" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Masa durumunu giriniz</label>
-        <input asp-for="Status" class="form-control" />
+        <input asp-for="UpdateTableVM.Status" class="form-control" />
     </div>
 
     <div class="mb-3">

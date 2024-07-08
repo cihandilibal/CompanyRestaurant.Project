@@ -5,6 +5,7 @@ using Project.COREMVC.Models.Payments.RequestModels;
 using Project.COREMVC.Models.Payments.PageVMs;
 using Project.COREMVC.Models.Payments.ResponseModels;
 using Project.ENTITIES.Models;
+using Project.COREMVC.Models.Ingredients.PageVMs;
 
 namespace Project.COREMVC.Controllers
 {
@@ -66,14 +67,14 @@ namespace Project.COREMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePayment(PaymentRequestModel item)
+        public async Task<IActionResult> CreatePayment(CreatePaymentPageVM item)
         {
             Payment pa = new()
             {
-                Price = item.Price,
-                Currency = item.Currency,
-                Date = item.Date,
-                PaymentMethod = item.PaymentMethod
+                Price = item.PaymentRequestModel.Price,
+                Currency = item.PaymentRequestModel.Currency,
+                Date = item.PaymentRequestModel.Date,
+                PaymentMethod = item.PaymentRequestModel.PaymentMethod
             };
             await _paymentManager.AddAsync(pa);
             return RedirectToAction("Index");
@@ -90,13 +91,28 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> UpdatePayment(int id)
         {
-            return View(await _paymentManager.FindAsync(id));
+            Payment payment = await _paymentManager.FindAsync(id);
+            UpdatePaymentVM updatePaymentVM = new UpdatePaymentVM();
+            updatePaymentVM.ID = payment.ID;
+            updatePaymentVM.Price = payment.Price;
+            updatePaymentVM.Currency = payment.Currency;
+            updatePaymentVM.Date= payment.Date;
+            updatePaymentVM.PaymentMethod= payment.PaymentMethod;
+            UpdatePaymentPageVM uppVm = new UpdatePaymentPageVM();
+            uppVm.UpdatePaymentVM = updatePaymentVM;
+            return View(uppVm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdatePayment(Payment item)
+        public async Task<IActionResult> UpdatePayment(UpdatePaymentPageVM model)
         {
-            await _paymentManager.UpdateAsync(item);
+            Payment payment = new Payment();
+            payment.ID = model.UpdatePaymentVM.ID;
+            payment.Price = model.UpdatePaymentVM.Price;
+            payment.Currency = model.UpdatePaymentVM.Currency;
+            payment.Date = model.UpdatePaymentVM.Date;
+            payment.PaymentMethod = model.UpdatePaymentVM.PaymentMethod;
+            await _paymentManager.UpdateAsync(payment);
             return RedirectToAction("Index");
         }
     }

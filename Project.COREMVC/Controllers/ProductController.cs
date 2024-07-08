@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.BLL.Managers.Abstracts;
 using Project.BLL.Managers.Concretes;
-using Project.COREMVC.Models.Products.PageVM;
+using Project.COREMVC.Models.Payments.PageVMs;
+using Project.COREMVC.Models.Products.PageVMs;
 using Project.COREMVC.Models.Products.RequestModels;
 using Project.COREMVC.Models.Products.ResponseModels;
 using Project.ENTITIES.Models;
@@ -19,54 +20,50 @@ namespace Project.COREMVC.Controllers
             _categoryManager = categoryManager;
         }
 
-        public IActionResult Index(int? categoryID)
+        public IActionResult Index()
         {
             List<ProductResponseModel> products;
 
-            if (categoryID.HasValue)
+            products = _productManager.Select(x => new ProductResponseModel
             {
-                products = _productManager.Where(x => x.CategoryID == categoryID).Select(x => new ProductResponseModel
-                {
-                    ID = x.ID,
-                    ProductName = x.ProductName,
-                    UnitPrice = x.UnitPrice,
-                    Unit = x.Unit,
-                    CategoryName = x.Category.CategoryName
-                }).ToList();
-            }
-            else
+                 ID = x.ID,
+                 ProductName = x.ProductName,
+                 UnitPrice = x.UnitPrice,
+                 Unit = x.Unit,
+                 CategoryName = x.Category.CategoryName
+            }).ToList();
+            GetProductsPageVM gppVM = new GetProductsPageVM()
             {
-                products = _productManager.Select(x => new ProductResponseModel
-                {
-                    ID = x.ID,
-                    ProductName = x.ProductName,
-                    UnitPrice = x.UnitPrice,
-                    Unit = x.Unit,
-                    CategoryName = x.Category.CategoryName
-                }).ToList();
-            }
-
-            return View(products);
+                Products = products
+            };
+            return View(gppVM);
         }
 
         public IActionResult CreateProduct()
         {
-            CategoriesPageVM cpVm = new()
+            List<CategoryResponseModel> categories;
+
+            categories = _categoryManager.Select(x => new CategoryResponseModel
             {
-                Categories = _categoryManager.GetActives()
+                ID = x.ID,
+                CategoryName = x.CategoryName,
+            }).ToList();
+            CategoriesPageVM cpVm = new CategoriesPageVM()
+            {
+                Categories = categories
             };
             return View(cpVm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(CreateProductRequestModel model)
+        public async Task<IActionResult> CreateProduct(CreateProductPageVM model)
         {
             Product p = new Product()
             {
-                ProductName = model.ProductName,
-                CategoryID = model.CategoryID,
-                UnitPrice = model.UnitPrice,
-                Unit = model.Unit
+                ProductName = model.CreateProductRequestModel.ProductName,
+                CategoryID = model.CreateProductRequestModel.CategoryID,
+                UnitPrice = model.CreateProductRequestModel.UnitPrice,
+                Unit = model.CreateProductRequestModel.Unit
             };
             await _productManager.AddAsync(p);
             return RedirectToAction("Index");
@@ -83,13 +80,28 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> UpdateProduct(int id)
         {
-            return View(await _productManager.FindAsync(id));
+            Product product = await _productManager.FindAsync(id);
+            UpdateProductVM updateProductVM = new UpdateProductVM();
+            updateProductVM.ID = product.ID;
+            updateProductVM.CategoryID = (int)product.CategoryID;
+            updateProductVM.ProductName = product.ProductName;
+            updateProductVM.Unit = product.Unit;
+            updateProductVM.UnitPrice = product.UnitPrice;
+            UpdateProductPageVM uppVm = new UpdateProductPageVM();
+            uppVm.UpdateProductVM = updateProductVM;
+            return View(uppVm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateProduct(Product item)
+        public async Task<IActionResult> UpdateProduct(UpdateProductPageVM model)
         {
-            await _productManager.UpdateAsync(item);
+            Product product = new Product();
+            product.ID = model.UpdateProductVM.ID;
+            product.CategoryID = model.UpdateProductVM.CategoryID;
+            product.ProductName = model.UpdateProductVM.ProductName;
+            product.Unit = model.UpdateProductVM.Unit;
+            product.UnitPrice = product.UnitPrice;
+            await _productManager.UpdateAsync(product);
             return RedirectToAction("Index");
         }
     }    

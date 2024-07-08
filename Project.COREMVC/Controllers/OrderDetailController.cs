@@ -21,19 +21,18 @@ namespace Project.COREMVC.Controllers
         public IActionResult GetOrderDetails()
         {
             List<OrderDetailsResponseModel> orderDetails = _orderDetailManager.Select(x => new OrderDetailsResponseModel
-            {
+            {    
                 OrderID = x.OrderID,
                 ProductName =  x.Product.ProductName,
                 Quantity = x.Quantity,
                 Unit = x.Unit,
-                UnitPrice = x.UnitPrice
+                UnitPrice = x.UnitPrice,
+                TotalPrice = x.TotalPrice
             }).ToList();
-            decimal totalPrice = _orderDetailManager.PriceOfOrder();
-
+            
             OrderDetailsPageVM odpVm = new OrderDetailsPageVM()
             {
-                OrderDetails = orderDetails,
-                TotalPrice = totalPrice
+                OrderDetails = orderDetails
             };
             return View(odpVm);
         }
@@ -44,15 +43,17 @@ namespace Project.COREMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddDetail(OrderDetailRequestModel model)
+        public async Task<IActionResult> AddDetail(AddOrderDetailPageVM model)
         {
+            
             OrderDetail od = new()
             {
-                OrderID = model.OrderID,
-                ProductID = model.ProductID,
-                Quantity = model.Quantity,
-                Unit = model.Unit,
-                UnitPrice = model.UnitPrice,
+                OrderID = model.OrderDetailRequestModel.OrderID,
+                ProductID = model.OrderDetailRequestModel.ProductID,
+                Quantity = model.OrderDetailRequestModel.Quantity,
+                Unit = model.OrderDetailRequestModel.Unit,
+                UnitPrice = model.OrderDetailRequestModel.UnitPrice,
+                TotalPrice =model.OrderDetailRequestModel.TotalPrice
             };
 
             await _orderDetailManager.AddAsync(od);
@@ -71,14 +72,32 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> UpdateDetail(int orderId)
         {
-            return View(await _orderDetailManager.FindAsync(orderId));
+           OrderDetail orderDetail =  await _orderDetailManager.FindAsync(orderId);
+           UpdateOrderDetailVM updateOrderDetailVM = new UpdateOrderDetailVM();
+            updateOrderDetailVM.OrderID = orderDetail.OrderID;
+            updateOrderDetailVM.ProductID = orderDetail.ProductID;
+            updateOrderDetailVM.Quantity = orderDetail.Quantity;
+            updateOrderDetailVM.Unit = orderDetail.Unit;
+            updateOrderDetailVM.UnitPrice = orderDetail.UnitPrice;
+            updateOrderDetailVM.TotalPrice = orderDetail.TotalPrice;
+            UpdateOrderDetailPageVM uodpVm = new UpdateOrderDetailPageVM();
+            uodpVm.UpdateOrderDetailVM = updateOrderDetailVM;
+            return View(uodpVm);
+
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateDetail(OrderDetail item)
+        public async Task<IActionResult> UpdateDetail(UpdateOrderDetailPageVM model)
         {
-            await _orderDetailManager.UpdateAsync(item);
-            return RedirectToAction("ListOrders");
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.OrderID = model.UpdateOrderDetailVM.OrderID;
+            orderDetail.ProductID = model.UpdateOrderDetailVM.OrderID;
+            orderDetail.Quantity = model.UpdateOrderDetailVM.Quantity;
+            orderDetail.Unit = model.UpdateOrderDetailVM.Unit;
+            orderDetail.UnitPrice = model.UpdateOrderDetailVM.UnitPrice;
+            orderDetail.TotalPrice = model.UpdateOrderDetailVM.TotalPrice;
+            await _orderDetailManager.UpdateAsync(orderDetail);
+            return RedirectToAction("GetOrderDetails");
         }
         
     }

@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace Project.DAL.Repositories.Concretes
 {
-    public class TableRepository:BaseRepository<Table>, ITableRepository
+    public class TableRepository : BaseRepository<Table>, ITableRepository
     {
-        public TableRepository(MyContext db):base(db)
+        public TableRepository(MyContext db) : base(db)
         {
-
         }
     }
 }

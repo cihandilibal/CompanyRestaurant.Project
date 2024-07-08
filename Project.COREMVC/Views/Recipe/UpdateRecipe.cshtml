@@ -1,11 +1,11 @@
-﻿@model Recipe
+﻿@model UpdateRecipePageVM
 
 <form asp-action="UpdateRecipe" asp-controller="Recipe" method="post" class="p-3 w-75 m-auto">
 
-    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="UpdateRecipeVM.ID" />
     <div class="mb-3">
         <label>Recete adı giriniz</label>
-        <input asp-for="Name" class="form-control" />
+        <input asp-for="UpdateRecipeVM.Name" class="form-control" />
     </div>
 
     <div class="mb-3">

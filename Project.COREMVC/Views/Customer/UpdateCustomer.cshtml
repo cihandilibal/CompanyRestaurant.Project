@@ -1,21 +1,21 @@
-﻿@model Customer
+﻿@model UpdateCustomerPageVM
 
 <form asp-action="UpdateCustomer" asp-controller="Customer" method="post" class="p-3 w-75 m-auto">
 
-    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="UpdateCustomerVM.ID" />
     <div class="mb-3">
         <label>Musteri ismini giriniz</label>
-        <input asp-for="FirstName" class="form-control" />
+        <input asp-for="UpdateCustomerVM.FirstName" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Musteri soyismini girini</label>
-        <input asp-for="LastName" class="form-control" />
+        <input asp-for="UpdateCustomerVM.LastName" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Telefon numarası giriniz</label>
-        <input asp-for="MobilePhone" class="form-control" />
+        <input asp-for="UpdateCustomerVM.MobilePhone" class="form-control" />
      </div>
 
     <div class="mb-3">

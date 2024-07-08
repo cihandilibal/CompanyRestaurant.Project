@@ -18,22 +18,17 @@ namespace Project.BLL.Managers.Concretes
         {
             _iRep = iRep;
         }
-        void SaatEkle(T item)
+        
+        public string Add(T item)
         {
-            item.CreatedDate = item.CreatedDate.AddHours(3);
-        }
-
-        public virtual string Add(T item)
-        {
-             SaatEkle(item);
+             
             _iRep.Add(item);
             return "Ekleme basarılıdır";
-
         }
 
         public async Task AddAsync(T item)
         {
-            SaatEkle(item);
+            
             await _iRep.AddAsync(item);
         }
 
@@ -57,15 +52,9 @@ namespace Project.BLL.Managers.Concretes
             return "Ekleme basarılıdır";
         }
 
-        //DTO => Domain Entity
-
-
-        //UI => Any Expression<Func<DTO,bool>>
-        //BLL => Any Expression<Func<Domain,bool>>
-
         public bool Any(Expression<Func<T, bool>> exp)
         {
-            //Exp kontrol işlemleri
+           
             return _iRep.Any(exp);
         }
 
@@ -95,18 +84,21 @@ namespace Project.BLL.Managers.Concretes
                 _iRep.Destroy(item);
                 return "Veri basarıyla yok edildi";
             }
-            //throw new Exception("Silme durumunda hata ile karsılasıldı");
+          
             return $"Veriyi silemezsiniz cünkü {item.ID} id'sine sahip veri pasif degil";
         }
 
         public string DestroyRange(List<T> list)
         {
-            //TOdo: Challende ödeve bakınız cünkü mevcut durumda istedigimiz şekilde calısmayacaktır...
+       
             foreach (T item in list) return Destroy(item);
 
             return "Silme işleminde bir sorunla karsılasıldı lütfen veri durumunun pasif oldugundan emin olunuz";
         }
-
+        public T Find(int id)
+        {
+            return _iRep.Find(id);
+        }
         public async Task<T> FindAsync(int id)
         {
 
@@ -123,7 +115,7 @@ namespace Project.BLL.Managers.Concretes
             return await _iRep.FirstOrDefaultAsync(exp);
         }
 
-        public virtual List<T> GetActives()
+        public List<T> GetActives()
         {
             return _iRep.GetActives();
         }
@@ -185,18 +177,6 @@ namespace Project.BLL.Managers.Concretes
             return _iRep.Where(exp);
         }
 
-        public List<string> DestroyRangeWithText(List<T> list)
-        {
-            List<string> metinler = new List<string>();
-            if (list == null || list.Count == 0)
-            {
-                metinler.Add("Listeye girilemedi");
-                return metinler;
-            }
-
-            foreach (T item in list) metinler.Add(Destroy(item));
-            return metinler;
-        }
     }
 
 }

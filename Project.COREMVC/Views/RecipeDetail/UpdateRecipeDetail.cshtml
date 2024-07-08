@@ -1,30 +1,30 @@
-﻿@model RecipeDetail
+﻿@model UpdateDetailPageVM
 
 <form asp-action="UpdateRecipeDetail" asp-controller="RecipeDetail" method="post" class="p-3 w-75 m-auto">
 
-    <input type="hidden" asp-for="RecipeID" />
+    <input type="hidden" asp-for="UpdateDetailVM.RecipeID" />
 
     <div class="mb-3">
         <label>Malzeme ID giriniz</label>
-        <input asp-for="IngredientID" class="form-control" />
+        <input asp-for="UpdateDetailVM.IngredientID" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Talimat giriniz</label>
-        <input asp-for="Instruction" class="form-control" />
+        <input asp-for="UpdateDetailVM.Instruction" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Malzeme miktarı giriniz</label>
-        <input asp-for="IngredientQuantity" class="form-control" />
+        <input asp-for="UpdateDetailVM.IngredientQuantity" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Birim giriniz</label>
-        <input asp-for="Unit" class="form-control" />
+        <input asp-for="UpdateDetailVM.Unit" class="form-control" />
     </div>
     <div class="mb-3">
-        <button class="btn btn-primary">ReceteDetayı Güncelle</button>
+        <button class="btn btn-primary">Recete Icerigini Güncelle</button>
     </div>
 
 

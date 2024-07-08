@@ -20,8 +20,8 @@ namespace Project.DAL.Extensions
                 Table t = new()
                 {
                     ID = i,
-                    TableNo = 2,
-                    Status = "Rezerve",
+                    TableNo = i,
+                    Status = "Bos",
                 };
 
                 tables.Add(t);

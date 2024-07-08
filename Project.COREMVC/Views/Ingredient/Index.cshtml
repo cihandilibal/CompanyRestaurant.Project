@@ -1,12 +1,13 @@
 ﻿@model IngredientsPageVM
 
-<h1>Ingredient List</h1>
+<h1> Stok Listesi</h1>
 <table class="table table-hover">
     <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Amount</th>
+            <th>PredictedAmount</th>
             <th>Unit</th>
             <th>UnitPrice</th>
         </tr>
@@ -18,6 +19,7 @@
                 <td>@item.ID</td>
                 <td>@item.Name</td>
                 <td>@item.Amount</td>
+                <td>@item.PredictedAmount</td>
                 <td>@item.Unit</td>
                 <td>@item.UnitPrice</td>
                 <td><a asp-controller="Ingredient" asp-action="UpdateIngredient" asp-route-id="@item.ID" class="btn btn-warning">Güncelle</a></td>

@@ -19,11 +19,12 @@ namespace Project.DAL.Extensions
             {
                 Ingredient ing = new()
                 {
-                   ID = i,
-                   Name = "Patates",
-                   Amount = 10,
-                   Unit = "kg",
-                   PredictedAmount = 9
+                    ID = i,
+                    Name = "Patates",
+                    Amount = 10,
+                    PredictedAmount = 9,
+                    Unit = "kg",
+                    UnitPrice = 15
                    
                 };
                    ingredients.Add(ing);

@@ -25,6 +25,7 @@ namespace Project.COREMVC.Controllers
                 Name = x.Name,
                 ID = x.ID,
                 Amount = x.Amount,
+                PredictedAmount = x.PredictedAmount,
                 Unit = x.Unit,
                 UnitPrice = x.UnitPrice
             }).ToList();
@@ -35,6 +36,7 @@ namespace Project.COREMVC.Controllers
                 Ingredients = ingredients,
                 TotalCost = totalCost
             };
+            
             return View(ipVm);
         }
 
@@ -44,14 +46,14 @@ namespace Project.COREMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddIngredient(AddIngredientRequestModel item)
+        public async Task<IActionResult> AddIngredient(AddIngredientPageVM item)
         {
             Ingredient i = new()
             {
-                Name= item.Name,
-                Amount= item.Amount,
-                Unit= item.Unit,
-                UnitPrice= item.UnitPrice
+                Name= item.AddIngredientRequestModel.Name,
+                Amount= item.AddIngredientRequestModel.Amount,
+                Unit= item.AddIngredientRequestModel.Unit,
+                UnitPrice= item.AddIngredientRequestModel.UnitPrice
             };
             await _ingredientManager.AddAsync(i);
             return RedirectToAction("Index");
@@ -68,14 +70,36 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> UpdateIngredient(int id)
         {
-            return View(await _ingredientManager.FindAsync(id));
+           Ingredient ingredient = await _ingredientManager.FindAsync(id);
+           UpdateIngredientVM updateIngredientVM = new UpdateIngredientVM();
+            updateIngredientVM.ID = ingredient.ID;
+            updateIngredientVM.Name = ingredient.Name;
+            updateIngredientVM.Amount = ingredient.Amount;
+            updateIngredientVM.PredictedAmount = ingredient.PredictedAmount;
+            updateIngredientVM.Unit = ingredient.Unit;
+            updateIngredientVM.UnitPrice = ingredient.UnitPrice;
+            UpdateIngredientPageVM uipVm = new UpdateIngredientPageVM();
+            uipVm.UpdateIngredientVM = updateIngredientVM;
+            return View(uipVm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateIngredient(Ingredient ingredient)
+        public async Task<IActionResult> UpdateIngredient(UpdateIngredientPageVM model)
         {
+            Ingredient ingredient = new Ingredient();
+            ingredient.ID = model.UpdateIngredientVM.ID;
+            ingredient.Name = model.UpdateIngredientVM.Name;
+            ingredient.Amount = model.UpdateIngredientVM.Amount;
+            ingredient.PredictedAmount = model.UpdateIngredientVM.PredictedAmount;
+            ingredient.Unit = model.UpdateIngredientVM.Unit;
+            ingredient.UnitPrice = model.UpdateIngredientVM.UnitPrice;
             await _ingredientManager.UpdateAsync(ingredient);
             return RedirectToAction("Index");
+        }
+        public IActionResult CheckStock(int id)
+        {
+            ViewBag.Message = _ingredientManager.ControlIngredient(id);
+            return View();
         }
     }
 }

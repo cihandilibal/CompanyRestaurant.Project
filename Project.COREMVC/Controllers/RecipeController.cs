@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.BLL.Managers.Abstracts;
 using Project.BLL.Managers.Concretes;
+using Project.COREMVC.Models.Recipes.PageVMs;
 using Project.COREMVC.Models.Recipes.RequestModels;
+using Project.COREMVC.Models.Recipes.ResponseModels;
 using Project.ENTITIES.Models;
 
 namespace Project.COREMVC.Controllers
@@ -17,22 +19,32 @@ namespace Project.COREMVC.Controllers
 
         public IActionResult Index()
         {
-            return View(_recipeManager.GetActives());
+            List<RecipeResponseModel> recipes;
+            recipes = _recipeManager.Select(x => new RecipeResponseModel
+            {
+                ID = x.ID,
+                Name = x.Name
+            }).ToList();
+            GetRecipesPageVM grpVm = new GetRecipesPageVM()
+            {
+                Recipes = recipes
+            };
+            return View(grpVm);
         }
 
-        public async Task<IActionResult> CreateRecipe()
+        public IActionResult CreateRecipe()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRecipe(CreateRecipeRequestModel item)
+        public async Task<IActionResult> CreateRecipe(CreateRecipePageVM item)
         {
-            
-           Recipe r = new Recipe()
-           {
-              Name = item.Name,
-           };
+
+            Recipe r = new Recipe()
+            {
+                Name = item.CreateRecipeRequestModel.Name
+            };
            await _recipeManager.AddAsync(r);
            return View("Index");
         }
@@ -48,12 +60,20 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> UpdateRecipe(int id)
         {
-            return View(await _recipeManager.FindAsync(id));
+            Recipe recipe = await _recipeManager.FindAsync(id);
+            UpdateRecipeVM updateRecipeVM = new UpdateRecipeVM();
+            updateRecipeVM.ID = recipe.ID;
+            updateRecipeVM.Name = recipe.Name;
+            UpdateRecipePageVM urpVm = new UpdateRecipePageVM();
+            return View(urpVm);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCategory(Recipe recipe)
+        public async Task<IActionResult> UpdateCategory(UpdateRecipePageVM model) 
         {
+            Recipe recipe = new Recipe();
+            recipe.ID = model.UpdateRecipeVM.ID;
+            recipe.Name = model.UpdateRecipeVM.Name;
             await _recipeManager.UpdateAsync(recipe);
             return RedirectToAction("Index");
         }

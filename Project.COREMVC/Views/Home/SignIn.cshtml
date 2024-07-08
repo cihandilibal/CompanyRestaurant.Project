@@ -1,24 +1,30 @@
-﻿@model UserSignInRequestModel
+﻿@model UserSignInPageVM
 
 <center>
 
     <h1>
-      @TempData["Message"]
+      Giris Yap
     </h1>
 
 <form asp-action="SignIn" asp-controller="Home" method="post" class="p-3 w-75 m-auto">
-    
-    <div class="mb-3">
-        <label>Kullanıcı ismi giriniz</label>
-        <span class="text-danger" asp-validation-for="UserName"></span>
-        <input asp-for="UserName" class="form-control" />
-    </div>
+
+        <div class="mb-3">
+            <label>Kullanıcı ismi giriniz</label>
+            <span class="text-danger" asp-validation-for="UserSignInRequestModel.UserName"></span>
+            <input asp-for="UserSignInRequestModel.UserName" class="form-control" />
+        </div>
 
     <div class="mb-3">
         <label>Sifre giriniz</label>
-        <span class="text-danger" asp-validation-for="Password"></span>
-        <input asp-for="Password" class="form-control" />
+        <span class="text-danger" asp-validation-for="UserSignInRequestModel.Password"></span>
+        <input asp-for="UserSignInRequestModel.Password" class="form-control" />
     </div>
+
+        <div class="mb-3">
+            <label>Beni Hatırla?</label>
+            <span class="text-danger" asp-validation-for="UserSignInRequestModel.RememberMe"></span>
+            <input asp-for="UserSignInRequestModel.RememberMe" class="form-control" />
+        </div>
 
     <div class="mb-3">
         <button class="btn btn-primary"> Giriş yap</button>
@@ -27,6 +33,12 @@
 
     <div class="text-danger" asp-validation-summary="ModelOnly">
     </div>
-
+       
 </form>
     </center>
+
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

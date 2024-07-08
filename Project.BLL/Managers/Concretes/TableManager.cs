@@ -16,5 +16,6 @@ namespace Project.BLL.Managers.Concretes
         {
             _tRep = tRep;
         }
-    }
+        
+    }   
 }

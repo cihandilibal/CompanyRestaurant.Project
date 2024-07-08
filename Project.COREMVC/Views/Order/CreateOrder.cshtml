@@ -1,20 +1,19 @@
-﻿@model CreateOrderRequestModel
+﻿@model CreateOrderPageVM
 
 <form asp-action="CreateOrder" asp-controller="Order" method="post" class="p-3 w-75 m-auto">
 
     <div class="mb-3">
         <label>Masa numarası giriniz</label>
-        <input asp-for="TableNo" class="form-control" />
+        <input asp-for="CreateOrderRequestModel.TableNo" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Siparis zamanı giriniz</label>
-        <input asp-for="OrderTime" class="form-control" />
+        <input asp-for="CreateOrderRequestModel.OrderTime" class="form-control" />
     </div>
 
     <div class="mb-3">
         <button class="btn btn-primary">Siparis Ekle</button>
     </div>
-
 
 </form>

@@ -1,20 +1,20 @@
-﻿@model CreateCustomerRequestModel
+﻿@model CreateCustomerPageVM
 
 <form asp-action="CreateCustomer" asp-controller="Customer" method="post" class="p-3 w-75 m-auto">
 
     <div class="mb-3">
         <label> Musteri ismini giriniz</label>
-        <input asp-for="FirstName" class="form-control" />
+        <input asp-for="CreateCustomerRequestModel.FirstName" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label>Musteri soyismini giriniz</label>
-        <input asp-for="LastName" class="form-control" />
+        <input asp-for="CreateCustomerRequestModel.LastName" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label> Telefon numarası giriniz</label>
-        <input asp-for="MobilePhone" class="form-control" />
+        <input asp-for="CreateCustomerRequestModel.MobilePhone" class="form-control" />
      </div>
 
     <div class="mb-3">

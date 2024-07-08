@@ -44,5 +44,6 @@ namespace Project.DAL.Repositories.Abstracts
         List<T> GetLastDatas(int count);
         List<T> GetFirstDatas(int count);
         Task<T> FindAsync(int id);
+         T Find(int id);
     }
 }

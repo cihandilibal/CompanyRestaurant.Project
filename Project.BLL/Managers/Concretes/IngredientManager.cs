@@ -27,6 +27,18 @@ namespace Project.BLL.Managers.Concretes
             }
             return cost;
         }
+       
+        public string ControlIngredient(int id)
+        {
+            Ingredient item = _inRep.Find(id);
+            decimal difference = Math.Abs((item.Amount - item.PredictedAmount) /item.Amount);
+            if (difference == 0.2M)
+            {
+                return "Uyarı: Stok Durumunu Kontrol Edin! ";
+            }
+            return "Stok yeterli seviyede";
+        }
         
+
     }
 }

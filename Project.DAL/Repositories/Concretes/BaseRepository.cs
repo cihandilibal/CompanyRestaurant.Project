@@ -82,7 +82,10 @@ namespace Project.DAL.Repositories.Concretes
             _db.Set<T>().RemoveRange(list);
             Save();
         }
-
+        public T Find(int id)
+        {
+           return _db.Set<T>().Find(id);
+        }
         public async Task<T> FindAsync(int id)
         {
             return await _db.Set<T>().FindAsync(id);

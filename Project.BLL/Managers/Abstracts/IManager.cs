@@ -29,8 +29,7 @@ namespace Project.BLL.Managers.Abstracts
         Task UpdateRangeAsync(List<T> list);
         string Destroy(T item);
         string DestroyRange(List<T> list);
-        List<string> DestroyRangeWithText(List<T> list);
-
+      
         //Linq Commands
         List<T> Where(Expression<Func<T, bool>> exp);
         bool Any(Expression<Func<T, bool>> exp);
@@ -42,6 +41,7 @@ namespace Project.BLL.Managers.Abstracts
         IQueryable<X> Select<X>(Expression<Func<T, X>> exp);
 
         //Find Commands
+        T Find(int id);
         Task<T> FindAsync(int id);
         List<T> GetLastDatas(int count);
         List<T> GetFirstDatas(int count);
