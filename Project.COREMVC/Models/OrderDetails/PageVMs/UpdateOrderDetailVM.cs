@@ -2,7 +2,7 @@
 {
     public class UpdateOrderDetailVM
     {
-        public int OrderID { get; set; }
+         public int OrderID { get; set; }
         public int ProductID { get; set; }
         public decimal Quantity { get; set; }
         public string Unit { get; set; }

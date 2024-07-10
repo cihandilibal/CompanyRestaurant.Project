@@ -13,10 +13,6 @@ namespace Project.ENTITIES.Models
        
         //Relational Properties
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual Payment Payment { get; set; }
-       
-
-
-
+     
     }
 }

@@ -53,16 +53,19 @@ namespace Project.COREMVC.Controllers
             await _orderManager.AddAsync(o);
             return RedirectToAction("ListOrders");
         }
+
         public async Task<IActionResult> DeleteOrder(int id)
         {
             _orderManager.Delete(await _orderManager.FindAsync(id));
             return RedirectToAction("ListOrders");
         }
+
         public async Task<IActionResult> DestroyOrder(int id)
         {
             _orderManager.Destroy(await _orderManager.FindAsync(id));
             return RedirectToAction("ListOrders");
         }
+
         public async Task<IActionResult> UpdateOrder(int id)
         {
             Order order = await _orderManager.FindAsync(id);

@@ -104,7 +104,7 @@ namespace Project.BLL.Managers.Concretes
 
             return await _iRep.FindAsync(id);
         }
-
+      
         public T FirstOrDefault(Expression<Func<T, bool>> exp)
         {
             return _iRep.FirstOrDefault(exp);
@@ -177,6 +177,7 @@ namespace Project.BLL.Managers.Concretes
             return _iRep.Where(exp);
         }
 
+       
     }
 
 }

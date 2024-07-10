@@ -36,11 +36,8 @@ namespace Project.DAL.ContextClasses
             builder.ApplyConfiguration(new TableConfiguration());
             CategoryDataSeedExtension.SeedCategories(builder);
             ProductDataSeedExtension.SeedProducts(builder);
-            IngredientDataSeedExtension.SeedIngredients(builder);
             RecipeDataSeedExtension.SeedRecipes(builder);
-            RecipeDetailDataSeedExtension.SeedRecipDetails(builder);
             UserRoleDataSeedExtension.SeedUsers(builder);
-            EmployeeDataSeedExtension.SeedEmployees(builder);
             TableDataSeedExtension.SeedTables(builder);
         }
 

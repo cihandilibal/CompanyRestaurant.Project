@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Project.ENTITIES.Models;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Project.CONF.Configurations
                 x.IngredientID,
                 x.RecipeID
             });
+            builder.Property(x => x.IngredientQuantity).HasColumnType("decimal(18,2)");
         }
     }
 }

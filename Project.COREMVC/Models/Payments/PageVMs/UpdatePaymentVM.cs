@@ -3,6 +3,7 @@
     public class UpdatePaymentVM
     {
         public int ID { get; set; }
+        public int OrderNo { get; set; }
         public decimal Price { get; set; }
         public string Currency { get; set; }
         public DateTime Date { get; set; }

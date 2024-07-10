@@ -8,13 +8,13 @@ namespace Project.ENTITIES.Models
 {
     public class Payment: BaseEntity
     {
+        public int OrderNo { get; set; }
         public decimal Price { get; set; }
         public string Currency { get; set; }
         public  DateTime Date { get; set; }
         public string PaymentMethod { get; set; }
         
-        //Relational Properties
-        public virtual Order Order { get; set; }
+        
 
     }
 }

@@ -16,12 +16,12 @@ namespace Project.BLL.ServiceInjections
         {
             services.AddIdentity<AppUser, IdentityRole<int>>(x =>
             {
-                x.Password.RequiredLength = 5;
                 x.Password.RequireDigit = false;
+                x.Password.RequiredLength = 6;
                 x.Password.RequireLowercase = true;
                 x.Password.RequireUppercase = true;
-                x.Password.RequireNonAlphanumeric = true;
-                x.Lockout.MaxFailedAccessAttempts = 5;
+                x.Password.RequireNonAlphanumeric = false;
+                x.Lockout.MaxFailedAccessAttempts = 10;
                 x.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<MyContext>();
 

@@ -16,7 +16,8 @@ builder.Services.AddSession(options =>
 
 builder.Services.AddIdentityServices();
 builder.Services.AddDbContextService();
-;builder.Services.AddManagerServices();
+
+builder.Services.AddManagerServices();
 builder.Services.AddRepServices();
 
 WebApplication app = builder.Build();
@@ -37,10 +38,10 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "Manager",
-    pattern: "{area}/{controller=Home}/{action=Register}/{id?}"
+    pattern: "{area}/{controller=Employee}/{action=GetEmployees}/{id?}"
     );
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Order}/{action=ListOrders}/{id?}");
+    pattern: "{controller=OrderDetail}/{action=AddDetail}/{id?}");
 
 app.Run();

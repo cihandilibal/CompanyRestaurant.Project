@@ -11,5 +11,5 @@ namespace Project.BLL.Managers.Abstracts
     {
        
     }
-    
+
 }

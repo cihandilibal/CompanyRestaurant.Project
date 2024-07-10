@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Project.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Unite : Migration
+    public partial class Init1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -154,6 +154,27 @@ namespace Project.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderNo = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<decimal>(type: "money", nullable: false),
+                    Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -322,31 +343,6 @@ namespace Project.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Payments",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "money", nullable: false),
-                    Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Payments", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Payments_Orders_ID",
-                        column: x => x.ID,
-                        principalTable: "Orders",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "RecipeDetails",
                 columns: table => new
                 {
@@ -386,7 +382,7 @@ namespace Project.DAL.Migrations
                     Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Unit = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "money", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "money", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -412,96 +408,50 @@ namespace Project.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 1, "d6a3cc96-e943-455e-b756-209fffe2239b", "Manager", "MANAGER" });
+                values: new object[] { 1, "827e689c-bcf1-4c23-9f5b-6cd8b6dd1c1d", "Manager", "MANAGER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedDate", "DeletedDate", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "ModifiedDate", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "2c3839d9-4c9f-45c0-980a-6d1d11db0234", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6735), null, "dilibalcihan@gmail.com", true, false, null, null, "DILIBALCIHAN@GMAIL.COM", "CIHAN", "AQAAAAIAAYagAAAAEMVvsRgKp11h27k4SbbIV2AJnxgmUVSwukR7ZAX+n1LTAgIS6+LPV94sXA3cJ7QRbQ==", null, false, "59d23f99-fe90-43f7-90e0-84dacedbfe2e", 1, false, "cihan" });
+                values: new object[] { 1, 0, "df0c1433-3d67-4da6-803a-e8b7a9336917", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(6940), null, "dilibalcihan@gmail.com", true, false, null, null, "DILIBALCIHAN@GMAIL.COM", "CIHAN", "AQAAAAIAAYagAAAAEPfY8NTL3FDDSg0w7jz+FH/hqc5fdaODcxhRRI6LTslLDmVL3416O3hZ2mtkHfo/eQ==", null, false, "a40f3514-2c8f-4375-9038-9910fe0ce6d3", 1, false, "cihan" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "ID", "CategoryName", "CreatedDate", "DeletedDate", "Description", "ModifiedDate", "Status" },
                 values: new object[,]
                 {
-                    { 1, "Books", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(2317), null, "Veritatis adipisci accusantium in voluptatem totam quia quam suscipit sit.", null, 1 },
-                    { 2, "Outdoors", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(2923), null, "Consequuntur adanaya patlıcan sokaklarda ışık vel in quaerat ipsam voluptatem.", null, 1 },
-                    { 3, "Books", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(3082), null, "Blanditiis consequuntur ipsum oldular sed okuma sit ama mıknatıslı şafak.", null, 1 },
-                    { 4, "Music", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(3231), null, "Ve layıkıyla minima layıkıyla nemo makinesi magni enim okuma gördüm.", null, 1 },
-                    { 5, "Games", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(3381), null, "Qui sayfası laudantium blanditiis quaerat koyun ki quis non dolore.", null, 1 },
-                    { 6, "Shoes", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(3579), null, "Quia consequatur sit et ki amet modi quia enim bilgiyasayarı.", null, 1 },
-                    { 7, "Books", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(3735), null, "Beğendim sıla modi oldular öyle camisi aut totam kapının consequatur.", null, 1 },
-                    { 8, "Books", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(3879), null, "Qui explicabo aperiam beğendim corporis qui eum vitae tv cesurca.", null, 1 },
-                    { 9, "Clothing", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(4029), null, "Telefonu masanın ea ea qui veritatis duyulmamış düşünüyor gül voluptatem.", null, 1 },
-                    { 10, "Games", new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(4298), null, "Aspernatur ducimus exercitationem esse voluptate yapacakmış gül adipisci laudantium sit.", null, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "ID", "Address", "CreatedDate", "DeletedDate", "Duty", "FirstName", "LastName", "MobilePhone", "ModifiedDate", "OffNumber", "Status" },
-                values: new object[,]
-                {
-                    { 1, "Uskudar", new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3621), null, "Garson", "Batuhan", "Dilibal", "0435 769 56 93", null, 3, 1 },
-                    { 2, "Uskudar", new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3647), null, "Garson", "Batuhan", "Dilibal", "0435 769 56 93", null, 3, 1 },
-                    { 3, "Uskudar", new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3649), null, "Garson", "Batuhan", "Dilibal", "0435 769 56 93", null, 3, 1 },
-                    { 4, "Uskudar", new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3650), null, "Garson", "Batuhan", "Dilibal", "0435 769 56 93", null, 3, 1 },
-                    { 5, "Uskudar", new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3651), null, "Garson", "Batuhan", "Dilibal", "0435 769 56 93", null, 3, 1 },
-                    { 6, "Uskudar", new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3662), null, "Garson", "Batuhan", "Dilibal", "0435 769 56 93", null, 3, 1 },
-                    { 7, "Uskudar", new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3757), null, "Garson", "Batuhan", "Dilibal", "0435 769 56 93", null, 3, 1 },
-                    { 8, "Uskudar", new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3758), null, "Garson", "Batuhan", "Dilibal", "0435 769 56 93", null, 3, 1 },
-                    { 9, "Uskudar", new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3760), null, "Garson", "Batuhan", "Dilibal", "0435 769 56 93", null, 3, 1 },
-                    { 10, "Uskudar", new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3763), null, "Garson", "Batuhan", "Dilibal", "0435 769 56 93", null, 3, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Ingredients",
-                columns: new[] { "ID", "Amount", "CreatedDate", "DeletedDate", "ModifiedDate", "Name", "PredictedAmount", "Status", "Unit", "UnitPrice" },
-                values: new object[,]
-                {
-                    { 1, 10m, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6043), null, null, "Patates", 9m, 1, "kg", 15m },
-                    { 2, 10m, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6053), null, null, "Patates", 9m, 1, "kg", 15m },
-                    { 3, 10m, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6055), null, null, "Patates", 9m, 1, "kg", 15m },
-                    { 4, 10m, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6125), null, null, "Patates", 9m, 1, "kg", 15m },
-                    { 5, 10m, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6128), null, null, "Patates", 9m, 1, "kg", 15m },
-                    { 6, 10m, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6132), null, null, "Patates", 9m, 1, "kg", 15m },
-                    { 7, 10m, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6134), null, null, "Patates", 9m, 1, "kg", 15m },
-                    { 8, 10m, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6136), null, null, "Patates", 9m, 1, "kg", 15m },
-                    { 9, 10m, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6138), null, null, "Patates", 9m, 1, "kg", 15m },
-                    { 10, 10m, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6141), null, null, "Patates", 9m, 1, "kg", 15m }
+                    { 1, "Toys", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(1893), null, "Ekşili umut bilgisayarı nemo gördüm şafak patlıcan doğru corporis ekşili.", null, 1 },
+                    { 2, "Music", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(2521), null, "Çobanın ut makinesi velit quasi ut enim accusantium batarya commodi.", null, 1 },
+                    { 3, "Clothing", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(2841), null, "Masaya kapının reprehenderit iusto voluptatum voluptatem minima sinema anlamsız doloremque.", null, 1 },
+                    { 4, "Toys", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(3032), null, "Anlamsız kalemi düşünüyor adanaya duyulmamış yaptı için velit olduğu eius.", null, 1 },
+                    { 5, "Grocery", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(3208), null, "Layıkıyla quia sinema qui sıla dolayı tv fugit labore telefonu.", null, 1 },
+                    { 6, "Outdoors", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(3389), null, "Velit totam quasi sequi voluptatem laudantium ratione nisi qui çobanın.", null, 1 },
+                    { 7, "Games", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(3696), null, "Şafak dağılımı numquam layıkıyla otobüs rem velit eaque gördüm aperiam.", null, 1 },
+                    { 8, "Computers", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(3884), null, "Enim ipsa yazın aspernatur molestiae aut in ipsam çakıl çıktılar.", null, 1 },
+                    { 9, "Electronics", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(4064), null, "Veniam blanditiis incidunt ea gazete vitae aut nesciunt mıknatıslı ki.", null, 1 },
+                    { 10, "Automotive", new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(4238), null, "Voluptatem corporis voluptatem ea ducimus sed mıknatıslı quia adipisci dolore.", null, 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Recipes",
                 columns: new[] { "ID", "CreatedDate", "DeletedDate", "ModifiedDate", "Name", "Status" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6211), null, null, "Filtre Kahve", 1 },
-                    { 2, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6215), null, null, "Filtre Kahve", 1 },
-                    { 3, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6216), null, null, "Filtre Kahve", 1 },
-                    { 4, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6218), null, null, "Filtre Kahve", 1 },
-                    { 5, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6219), null, null, "Filtre Kahve", 1 },
-                    { 6, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6223), null, null, "Filtre Kahve", 1 },
-                    { 7, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6224), null, null, "Filtre Kahve", 1 },
-                    { 8, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6226), null, null, "Filtre Kahve", 1 },
-                    { 9, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6227), null, null, "Filtre Kahve", 1 },
-                    { 10, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6230), null, null, "Filtre Kahve", 1 }
-                });
+                values: new object[] { 1, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(6436), null, null, "Filtre Kahve", 1 });
 
             migrationBuilder.InsertData(
                 table: "Tables",
                 columns: new[] { "ID", "CreatedDate", "DeletedDate", "ModifiedDate", "Status", "TableNo" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3851), null, null, "Bos", 1 },
-                    { 2, new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3856), null, null, "Bos", 2 },
-                    { 3, new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3858), null, null, "Bos", 3 },
-                    { 4, new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3859), null, null, "Bos", 4 },
-                    { 5, new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3860), null, null, "Bos", 5 },
-                    { 6, new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3863), null, null, "Bos", 6 },
-                    { 7, new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3864), null, null, "Bos", 7 },
-                    { 8, new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3865), null, null, "Bos", 8 },
-                    { 9, new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3866), null, null, "Bos", 9 },
-                    { 10, new DateTime(2024, 7, 8, 16, 30, 24, 90, DateTimeKind.Local).AddTicks(3868), null, null, "Bos", 10 }
+                    { 1, new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8682), null, null, "Bos", 1 },
+                    { 2, new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8720), null, null, "Bos", 2 },
+                    { 3, new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8721), null, null, "Bos", 3 },
+                    { 4, new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8723), null, null, "Bos", 4 },
+                    { 5, new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8724), null, null, "Bos", 5 },
+                    { 6, new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8736), null, null, "Bos", 6 },
+                    { 7, new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8873), null, null, "Bos", 7 },
+                    { 8, new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8875), null, null, "Bos", 8 },
+                    { 9, new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8876), null, null, "Bos", 9 },
+                    { 10, new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8878), null, null, "Bos", 10 }
                 });
 
             migrationBuilder.InsertData(
@@ -514,33 +464,16 @@ namespace Project.DAL.Migrations
                 columns: new[] { "ID", "CategoryID", "CreatedDate", "DeletedDate", "ModifiedDate", "ProductName", "Status", "Unit", "UnitPrice" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(4598), null, null, "Handmade Steel Shirt", 1, "Porsiyon", 18.50m },
-                    { 2, 2, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(4861), null, null, "Gorgeous Rubber Mouse", 1, "Porsiyon", 278.37m },
-                    { 3, 3, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(4978), null, null, "Incredible Steel Table", 1, "Porsiyon", 898.89m },
-                    { 4, 4, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(5087), null, null, "Small Plastic Salad", 1, "Porsiyon", 801.83m },
-                    { 5, 5, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(5196), null, null, "Small Granite Pants", 1, "Porsiyon", 120.50m },
-                    { 6, 6, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(5412), null, null, "Unbranded Plastic Gloves", 1, "Porsiyon", 573.88m },
-                    { 7, 7, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(5521), null, null, "Tasty Cotton Sausages", 1, "Porsiyon", 605.24m },
-                    { 8, 8, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(5630), null, null, "Licensed Fresh Mouse", 1, "Porsiyon", 910.37m },
-                    { 9, 9, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(5739), null, null, "Ergonomic Cotton Sausages", 1, "Porsiyon", 810.09m },
-                    { 10, 10, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(5848), null, null, "Incredible Fresh Table", 1, "Porsiyon", 381.84m }
-                });
-
-            migrationBuilder.InsertData(
-                table: "RecipeDetails",
-                columns: new[] { "IngredientID", "RecipeID", "CreatedDate", "DeletedDate", "IngredientQuantity", "Instruction", "ModifiedDate", "Status", "Unit" },
-                values: new object[,]
-                {
-                    { 1, 1, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6288), null, 3m, "Karıstır", null, 1, "Adet" },
-                    { 2, 2, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6293), null, 3m, "Karıstır", null, 1, "Adet" },
-                    { 3, 3, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6295), null, 3m, "Karıstır", null, 1, "Adet" },
-                    { 4, 4, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6297), null, 3m, "Karıstır", null, 1, "Adet" },
-                    { 5, 5, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6299), null, 3m, "Karıstır", null, 1, "Adet" },
-                    { 6, 6, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6302), null, 3m, "Karıstır", null, 1, "Adet" },
-                    { 7, 7, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6304), null, 3m, "Karıstır", null, 1, "Adet" },
-                    { 8, 8, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6306), null, 3m, "Karıstır", null, 1, "Adet" },
-                    { 9, 9, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6307), null, 3m, "Karıstır", null, 1, "Adet" },
-                    { 10, 10, new DateTime(2024, 7, 8, 16, 30, 23, 981, DateTimeKind.Local).AddTicks(6311), null, 3m, "Karıstır", null, 1, "Adet" }
+                    { 1, 1, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(4787), null, null, "Ergonomic Wooden Sausages", 1, "Porsiyon", 844.29m },
+                    { 2, 2, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5120), null, null, "Awesome Fresh Soap", 1, "Porsiyon", 741.79m },
+                    { 3, 3, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5263), null, null, "Sleek Frozen Chicken", 1, "Porsiyon", 200.75m },
+                    { 4, 4, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5398), null, null, "Gorgeous Steel Sausages", 1, "Porsiyon", 106.61m },
+                    { 5, 5, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5530), null, null, "Ergonomic Plastic Fish", 1, "Porsiyon", 757.35m },
+                    { 6, 6, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5643), null, null, "Refined Granite Bike", 1, "Porsiyon", 270.07m },
+                    { 7, 7, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5765), null, null, "Fantastic Soft Chair", 1, "Porsiyon", 529.05m },
+                    { 8, 8, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5991), null, null, "Awesome Frozen Soap", 1, "Porsiyon", 656.09m },
+                    { 9, 9, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(6097), null, null, "Refined Steel Bacon", 1, "Porsiyon", 837.10m },
+                    { 10, 10, new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(6216), null, null, "Unbranded Steel Bike", 1, "Porsiyon", 147.23m }
                 });
 
             migrationBuilder.CreateIndex(
@@ -641,10 +574,10 @@ namespace Project.DAL.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Ingredients");

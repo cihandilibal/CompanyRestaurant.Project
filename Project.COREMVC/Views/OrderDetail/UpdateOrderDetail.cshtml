@@ -3,6 +3,12 @@
 <form asp-action="UpdateDetail" asp-controller="OrderDetail" method="post" class="p-3 w-75 m-auto">
 
     <input type="hidden" asp-for="UpdateOrderDetailVM.OrderID" />
+    <input type="hidden" asp-for="UpdateOrderDetailVM.ProductID" />
+
+    <div class="mb-3">
+        <label> Siparis ID giriniz</label>
+        <input asp-for="UpdateOrderDetailVM.OrderID" class="form-control" />
+    </div>
 
     <div class="mb-3">
         <label> Urun ID giriniz</label>

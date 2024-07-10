@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Project.CONF\Project.CONF.csproj" />
-    <ProjectReference Include="..\Project.ENTITIES\Project.ENTITIES.csproj" />
   </ItemGroup>
 
 </Project>

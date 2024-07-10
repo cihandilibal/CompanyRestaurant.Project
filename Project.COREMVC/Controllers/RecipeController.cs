@@ -38,16 +38,17 @@ namespace Project.COREMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRecipe(CreateRecipePageVM item)
+        public async Task<IActionResult> CreateRecipe(CreateRecipePageVM model)
         {
 
             Recipe r = new Recipe()
             {
-                Name = item.CreateRecipeRequestModel.Name
+                Name = model.CreateRecipeRequestModel.Name
             };
            await _recipeManager.AddAsync(r);
-           return View("Index");
+           return RedirectToAction("Index");
         }
+
         public async Task<IActionResult> DeleteRecipe(int id)
         {
             _recipeManager.Delete(await _recipeManager.FindAsync(id));
@@ -65,6 +66,7 @@ namespace Project.COREMVC.Controllers
             updateRecipeVM.ID = recipe.ID;
             updateRecipeVM.Name = recipe.Name;
             UpdateRecipePageVM urpVm = new UpdateRecipePageVM();
+            urpVm.UpdateRecipeVM = updateRecipeVM;
             return View(urpVm);
         }
 

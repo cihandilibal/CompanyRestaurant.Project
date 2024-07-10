@@ -43,6 +43,7 @@ namespace Project.BLL.Managers.Abstracts
         //Find Commands
         T Find(int id);
         Task<T> FindAsync(int id);
+        
         List<T> GetLastDatas(int count);
         List<T> GetFirstDatas(int count);
     }

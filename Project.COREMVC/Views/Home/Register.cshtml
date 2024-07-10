@@ -1,40 +1,40 @@
 ﻿@model UserRegisterPageVM
 <center>
     <h1>Kayıt Ol</h1>
-<form asp-action="Register" asp-controller="Home" method="post" class="p-3 w-75 m-auto">
+    <form asp-action="Register" asp-controller="Home" method="post" class="p-3 w-75 m-auto">
 
-    <div class="mb-3">
-        <label>Kullanıcı ismi giriniz</label>
-        <span class="text-danger" asp-validation-for="UserRegisterRequestModel.UserName"></span>
-        <input asp-for="UserRegisterRequestModel.UserName" class="form-control" />
-    </div>
+        <div class="mb-3">
+            <label>Kullanıcı ismi giriniz</label>
+            <span class="text-danger" asp-validation-for="UserRegisterRequestModel.UserName"></span>
+            <input asp-for="UserRegisterRequestModel.UserName" class="form-control" />
+        </div>
 
-    <div class="mb-3">
-        <label>Sifre giriniz</label>
-        <span class="text-danger" asp-validation-for="UserRegisterRequestModel.Password"></span>
-        <input asp-for="UserRegisterRequestModel.Password" class="form-control" />
-    </div>
+        <div class="mb-3">
+            <label>Sifre giriniz</label>
+            <span class="text-danger" asp-validation-for="UserRegisterRequestModel.Password"></span>
+            <input asp-for="UserRegisterRequestModel.Password" class="form-control" />
+        </div>
 
-    <div class="mb-3">
-        <label>Email adresi giriniz</label>
-        <span class="text-danger" asp-validation-for="UserRegisterRequestModel.Email"></span>
-        <input type="text" asp-for="UserRegisterRequestModel.Email" class="form-control" />
-    </div>
+        <div class="mb-3">
+            <label>Email adresi giriniz</label>
+            <span class="text-danger" asp-validation-for="UserRegisterRequestModel.Email"></span>
+            <input type="text" asp-for="UserRegisterRequestModel.Email" class="form-control" />
+        </div>
 
-    <div class="mb-3">
-        <button class="btn btn-primary">Kayıt ol</button>
-    </div>
+        <div class="mb-3">
+            <button class="btn btn-primary">Kayıt ol</button>
+        </div>
 
-    <div class="text-danger" asp-validation-summary="ModelOnly">
-    </div>
+        <div class="text-danger" asp-validation-summary="ModelOnly">
+        </div>
 
-</form>
+    </form>
 
-  </center>
-
-
-  @section Scripts
-  {
+</center>
+@section Scripts
+    {
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-  }
+}
+
+

@@ -4,7 +4,6 @@ using Project.BLL.Managers.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,7 +26,7 @@ namespace Project.BLL.ServiceInjections
             services.AddScoped<IRecipeManager, RecipeManager>();
             services.AddScoped<IIngredientManager, IngredientManager>();
             services.AddScoped<IRecipeDetailManager, RecipeDetailManager>();
-           services.AddScoped<ITableManager, TableManager>();
+            services.AddScoped<ITableManager, TableManager>();
             
             return services;
        }

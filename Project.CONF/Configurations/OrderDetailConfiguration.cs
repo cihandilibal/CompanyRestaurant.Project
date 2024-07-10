@@ -21,6 +21,8 @@ namespace Project.CONF.Configurations
                 x.ProductID
             });
             builder.Property(x => x.UnitPrice).HasColumnType("money");
+            builder.Property(x => x.TotalPrice).HasColumnType("money");
+            builder.Property(x => x.Quantity).HasColumnType("decimal(18,2)");
         }
     }
 }

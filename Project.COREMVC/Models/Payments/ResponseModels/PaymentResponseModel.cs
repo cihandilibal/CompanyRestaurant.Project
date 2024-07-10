@@ -8,7 +8,7 @@ namespace Project.COREMVC.Models.Payments.ResponseModels
        public decimal Price { get; set; }
         public string Currency { get; set; }
         public DateTime Date { get; set; }
-        public int OrderID { get; set; }
+        public int OrderNo { get; set; }
 
     }
 }

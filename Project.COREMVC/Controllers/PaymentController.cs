@@ -49,10 +49,11 @@ namespace Project.COREMVC.Controllers
             List<PaymentResponseModel> payments = _paymentManager.Select(x => new PaymentResponseModel
             {
                 ID = x.ID,
+                OrderNo = x.OrderNo,
                 Price = x.Price,
                 Currency = x.Currency,
                 Date = x.Date,
-                OrderID = x.Order.ID
+               
             }).ToList();
             PaymentsPageVM pVm = new PaymentsPageVM()
             {
@@ -71,6 +72,7 @@ namespace Project.COREMVC.Controllers
         {
             Payment pa = new()
             {
+                OrderNo = item.PaymentRequestModel.OrderNo,
                 Price = item.PaymentRequestModel.Price,
                 Currency = item.PaymentRequestModel.Currency,
                 Date = item.PaymentRequestModel.Date,
@@ -94,6 +96,7 @@ namespace Project.COREMVC.Controllers
             Payment payment = await _paymentManager.FindAsync(id);
             UpdatePaymentVM updatePaymentVM = new UpdatePaymentVM();
             updatePaymentVM.ID = payment.ID;
+            updatePaymentVM.OrderNo = payment.OrderNo;
             updatePaymentVM.Price = payment.Price;
             updatePaymentVM.Currency = payment.Currency;
             updatePaymentVM.Date= payment.Date;
@@ -108,6 +111,7 @@ namespace Project.COREMVC.Controllers
         {
             Payment payment = new Payment();
             payment.ID = model.UpdatePaymentVM.ID;
+            payment.OrderNo = model.UpdatePaymentVM.OrderNo;
             payment.Price = model.UpdatePaymentVM.Price;
             payment.Currency = model.UpdatePaymentVM.Currency;
             payment.Date = model.UpdatePaymentVM.Date;

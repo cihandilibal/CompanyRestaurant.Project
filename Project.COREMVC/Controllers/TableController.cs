@@ -12,7 +12,7 @@ namespace Project.COREMVC.Controllers
     {
         readonly ITableManager _tableManager;
        
-        public TableController (TableManager tableManager)
+        public TableController (ITableManager tableManager)
         {
             _tableManager = tableManager;
         }

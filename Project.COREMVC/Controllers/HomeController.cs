@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Project.BLL.Managers.Concretes;
+using Project.BLL.Managers.Abstracts;
 using Project.COREMVC.Models;
 using Project.COREMVC.Models.Users.PageVMs;
 using Project.COREMVC.Models.Users.RequestModels;
-using Project.DAL.Repositories.Abstracts;
 using Project.ENTITIES.Models;
 using System.Diagnostics;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
@@ -28,11 +27,6 @@ namespace Project.COREMVC.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
-        }
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
         }
 
         public IActionResult Index()

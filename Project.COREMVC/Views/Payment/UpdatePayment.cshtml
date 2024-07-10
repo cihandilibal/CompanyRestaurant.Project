@@ -4,6 +4,10 @@
 
     <input type="hidden" asp-for="UpdatePaymentVM.ID" />
     <div class="mb-3">
+        <label> Siparis numarası giriniz</label>
+        <input asp-for="UpdatePaymentVM.OrderNo" class="form-control" />
+    </div>
+    <div class="mb-3">
         <label> Fiyat giriniz</label>
         <input asp-for="UpdatePaymentVM.Price" class="form-control" />
     </div>

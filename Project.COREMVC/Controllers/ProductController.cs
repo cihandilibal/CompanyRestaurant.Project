@@ -48,11 +48,11 @@ namespace Project.COREMVC.Controllers
                 ID = x.ID,
                 CategoryName = x.CategoryName,
             }).ToList();
-            CategoriesPageVM cpVm = new CategoriesPageVM()
+            CreateProductPageVM cppVm = new CreateProductPageVM()
             {
                 Categories = categories
             };
-            return View(cpVm);
+            return View(cppVm);
         }
 
         [HttpPost]

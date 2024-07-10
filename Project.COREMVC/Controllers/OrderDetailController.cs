@@ -23,7 +23,7 @@ namespace Project.COREMVC.Controllers
             List<OrderDetailsResponseModel> orderDetails = _orderDetailManager.Select(x => new OrderDetailsResponseModel
             {    
                 OrderID = x.OrderID,
-                ProductName =  x.Product.ProductName,
+                ProductID =  x.ProductID,
                 Quantity = x.Quantity,
                 Unit = x.Unit,
                 UnitPrice = x.UnitPrice,
@@ -59,21 +59,21 @@ namespace Project.COREMVC.Controllers
             await _orderDetailManager.AddAsync(od);
             return RedirectToAction("GetOrderDetails");
         }
-        public async Task<IActionResult> DeleteDetail(int orderId)
+        public async Task<IActionResult> DeleteDetail(int id)
         {
-            _orderDetailManager.Delete(await _orderDetailManager.FindAsync(orderId));
+            _orderDetailManager.Delete(await _orderDetailManager.FindAsync(id));
             return RedirectToAction("GetOrderDetails");
         }
 
-        public async Task<IActionResult> DestroyDetail(int orderId)
+        public async Task<IActionResult> DestroyDetail(int id)
         {
-            _orderDetailManager.Destroy(await _orderDetailManager.FindAsync(orderId));
+            _orderDetailManager.Destroy(await _orderDetailManager.FindAsync(id));
             return RedirectToAction("GetOrderDetails");
         }
-        public async Task<IActionResult> UpdateDetail(int orderId)
+        public async Task<IActionResult> UpdateOrderDetail(int orderId,int productId)
         {
-           OrderDetail orderDetail =  await _orderDetailManager.FindAsync(orderId);
-           UpdateOrderDetailVM updateOrderDetailVM = new UpdateOrderDetailVM();
+            OrderDetail orderDetail =  await _orderDetailManager.FirstOrDefaultAsync(x=>x.OrderID == orderId && x.ProductID == productId );
+            UpdateOrderDetailVM updateOrderDetailVM = new UpdateOrderDetailVM();
             updateOrderDetailVM.OrderID = orderDetail.OrderID;
             updateOrderDetailVM.ProductID = orderDetail.ProductID;
             updateOrderDetailVM.Quantity = orderDetail.Quantity;
@@ -87,7 +87,7 @@ namespace Project.COREMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateDetail(UpdateOrderDetailPageVM model)
+        public async Task<IActionResult> UpdateOrderDetail(UpdateOrderDetailPageVM model)
         {
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.OrderID = model.UpdateOrderDetailVM.OrderID;

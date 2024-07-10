@@ -15,11 +15,10 @@ namespace Project.DAL.Extensions
         {
             List<Recipe> recipes = new();
 
-            for (int i = 1; i < 11; i++)
             {
                 Recipe r = new()
                 {
-                    ID = i,
+                    ID = 1,
                     Name = "Filtre Kahve"
                 };
 
