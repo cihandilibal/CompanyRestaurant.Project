@@ -1,0 +1,45 @@
+﻿@model UpdateEmployeePageVM
+
+<form asp-action="UpdateEmployee" asp-controller="Employee" method="post" class="p-3 w-75 m-auto">
+
+    <input type="hidden" asp-for="UpdateEmployeeVM.ID" />
+
+    <div class="mb-3">
+        <label>Calısan adını giriniz</label>
+        <input asp-for="UpdateEmployeeVM.FirstName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısan soyadını giriniz</label>
+        <input asp-for="UpdateEmployeeVM.LastName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısanın gorevini giriniz</label>
+        <input asp-for="UpdateEmployeeVM.Duty" class="form-control" />
+    </div>
+
+     <div class="mb-3">
+        <label>Calısan telefon numarası giriniz</label>
+        <input asp-for="UpdateEmployeeVM.MobilePhone" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısanın ev adresini giriniz</label>
+        <input asp-for="UpdateEmployeeVM.Address" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısanın izin sayısını giriniz</label>
+        <input asp-for="UpdateEmployeeVM.OffNumber" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısanın izin zamanını giriniz</label>
+        <input asp-for="UpdateEmployeeVM.OffTime" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary"> Calısan Güncelle</button>
+    </div>
+</form>

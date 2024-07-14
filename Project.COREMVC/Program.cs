@@ -37,11 +37,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "Manager",
-    pattern: "{area}/{controller=Employee}/{action=GetEmployees}/{id?}"
+    name: "Admin",
+    pattern: "{area}/{controller=Employee}/{action=ListEmployees}/{id?}"
     );
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=OrderDetail}/{action=AddDetail}/{id?}");
+    pattern: "{controller=Home}/{action=Register}/{id?}");
 
 app.Run();

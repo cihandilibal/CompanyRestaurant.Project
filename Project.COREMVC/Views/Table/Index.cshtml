@@ -1,5 +1,11 @@
 ﻿@model GetTablesPageVM
 
+@if (TempData["Message"] != null)
+{
+    <h1 class="alert alert-danger">
+        <b>@TempData["Message"]!</b>
+    </h1>
+}
 <section class="panel">
     <header class="panel-heading">
         <h3> Masalar </h3>
@@ -12,6 +18,7 @@
                         <th>Masa ID</th>
                         <th>Masa Numarası</th>
                         <th>Masa Durumu</th>
+                        <th>Durum</th>
                         <th class="hidden-phone">Guncelle</th>
                         <th class="hidden-phone">Sil</th>
                         <th class="hidden-phone">Yok Et</th>
@@ -24,6 +31,7 @@
                         <tr class="gradeX">
                             <td>@item.ID</td>
                             <td> @item.TableNo</td>
+                            <td> @item.Situation</td>
                             <td> @item.Status</td>
                             <td class="center hidden-phone"><a asp-action="UpdateTable" asp-route-id="@item.ID" class="btn btn-warning">Güncelle</a></td>
                             <td class="center hidden-phone"><a asp-action="DeleteTable" asp-route-id="@item.ID" class="btn btn-danger">Sil</a></td>

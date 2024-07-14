@@ -9,9 +9,11 @@ namespace Project.BLL.Managers.Abstracts
 {
     public interface IPaymentManager: IManager<Payment>
     {
-       decimal GetDailyGiro(DateTime date);
-       decimal GetWeeklyGiro(DateTime startOfWeek);
-       decimal GetMonthlyGiro(int year, int month);
+       Task<Dictionary<DateTime, Dictionary<string, decimal>>> GetDailyGiroAsync(DateTime startDate, DateTime endDate);
+       Task<Dictionary<string, Dictionary<int, decimal>>> GetWeeklyGiroAsync(DateTime startDate, DateTime endDate);
+       Task<Dictionary<string, Dictionary<string, decimal>>> GetMonthlyGiroAsync(DateTime startDate, DateTime endDate);
+
+
 
     }
 }

@@ -6,6 +6,7 @@ using Project.COREMVC.Models.RecipeDetails.RequestModels;
 using Project.COREMVC.Models.RecipeDetails.ResponseModels;
 using Project.COREMVC.Models.Recipes.ResponseModels;
 using Project.ENTITIES.Models;
+
 namespace Project.COREMVC.Controllers
 {
     public class RecipeDetailController : Controller
@@ -23,10 +24,12 @@ namespace Project.COREMVC.Controllers
             recipeDetails = _recipeDetailManager.Select(x => new RecipeDetailResponseModel
             {
                 RecipeID = x.ID,
-                IngredientName = x.Ingredient.Name,
+                IngredientID = x.IngredientID,
                 Instruction = x.Instruction,
                 IngredientQuantity = x.IngredientQuantity,
-                Unit = x.Unit
+                Unit = x.Unit,
+                Status = x.Status
+
             }).ToList();
 
             RecipeDetailsPageVM rdpVm = new RecipeDetailsPageVM()
@@ -53,47 +56,20 @@ namespace Project.COREMVC.Controllers
                 Unit = model.RecipeDetailRequestModel.Unit
             };
             await _recipeDetailManager.AddAsync(rd);
-            return View("Index");
+            return RedirectToAction("Index");
         }
-        public async Task<IActionResult> DeleteRecipeDetail(int recipeId)
+        public async Task<IActionResult> DeleteRecipeDetail(int recipeId, int ingredientId)
         {
-            _recipeDetailManager.Delete(await _recipeDetailManager.FindAsync(recipeId));
+            RecipeDetail originaldata = await _recipeDetailManager.FirstOrDefaultAsync(x => x.RecipeID == recipeId && x.IngredientID == ingredientId);
+            _recipeDetailManager.Destroy(originaldata);
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> DestroyRecipeDetail(int recipeId)
+        public async Task<IActionResult> DestroyRecipeDetail(int recipeId, int ingredientId)
         {
-            _recipeDetailManager.Destroy(await _recipeDetailManager.FindAsync(recipeId));
+            RecipeDetail originaldata = await _recipeDetailManager.FirstOrDefaultAsync(x => x.RecipeID == recipeId && x.IngredientID == ingredientId);
+            _recipeDetailManager.Destroy(originaldata);
             return RedirectToAction("Index");
         }
-
-        public async Task<IActionResult> UpdateRecipeDetail(int recipeId)
-        {
-            RecipeDetail recipeDetail = await _recipeDetailManager.FindAsync(recipeId);
-            UpdateDetailVM updateDetailVM = new UpdateDetailVM();
-            updateDetailVM.RecipeID = recipeDetail.RecipeID;
-            updateDetailVM.IngredientID = recipeDetail.IngredientID;
-            updateDetailVM.IngredientQuantity = recipeDetail.IngredientQuantity;
-            updateDetailVM.Unit = recipeDetail.Unit;
-            updateDetailVM.Instruction = recipeDetail.Instruction;
-            UpdateDetailPageVM udpVm = new UpdateDetailPageVM();
-            udpVm.UpdateDetailVM = updateDetailVM;
-            return View(udpVm);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> UpdateRecipeDetail(UpdateDetailPageVM model)
-        {
-            RecipeDetail recipeDetail = new RecipeDetail();
-            recipeDetail.RecipeID = model.UpdateDetailVM.RecipeID;
-            recipeDetail.IngredientID = model.UpdateDetailVM.IngredientID;
-            recipeDetail.IngredientQuantity = model.UpdateDetailVM.IngredientQuantity;
-            recipeDetail.Unit = model.UpdateDetailVM.Unit;
-            recipeDetail.Instruction = model.UpdateDetailVM.Instruction;
-            await _recipeDetailManager.UpdateAsync(recipeDetail);
-            return RedirectToAction("Index");
-        }
-
-
     }
 }

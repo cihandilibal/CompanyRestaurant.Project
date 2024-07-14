@@ -1,4 +1,5 @@
-﻿using Project.BLL.Managers.Abstracts;
+﻿using Microsoft.EntityFrameworkCore;
+using Project.BLL.Managers.Abstracts;
 using Project.DAL.Repositories.Abstracts;
 using Project.ENTITIES.CoreIntefaces;
 using System;

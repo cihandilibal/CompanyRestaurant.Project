@@ -1,8 +1,11 @@
 ﻿@model PaymentsPageVM
 
-<h1>
-    <span class="text-danger">@TempData["Message"]</span>
-</h1>
+@if (TempData["Message"] != null)
+{
+    <h1 class="alert alert-danger">
+        <b>@TempData["Message"]!</b>
+    </h1>
+}
 
 <section class="panel">
     <header class="panel-heading">
@@ -18,6 +21,7 @@
                         <th>Para Birimi</th>
                         <th>Tarih</th>
                         <th>Siparis Numarası</th>
+                        <th>Durum</th>
                         <th class="hidden-phone">Guncelle</th>
                         <th class="hidden-phone">Sil</th>
                         <th class="hidden-phone">Yok Et</th>
@@ -33,6 +37,7 @@
                             <td> @item.Currency</td>
                             <td> @item.Date</td>
                             <td> @item.OrderNo</td>
+                            <td> @item.Status</td>
                             <td class="center hidden-phone"><a asp-action="UpdatePayment" asp-route-id="@item.ID" class="btn btn-warning">Güncelle</a></td>
                             <td class="center hidden-phone"><a asp-action="DeletePayment" asp-route-id="@item.ID" class="btn btn-danger">Sil</a></td>
                             <td class="center hidden-phone"><a asp-action="DestroyPayment" asp-route-id="@item.ID" class="btn btn-danger">Yok et</a></td>

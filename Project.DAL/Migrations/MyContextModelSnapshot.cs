@@ -17,7 +17,7 @@ namespace Project.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -58,9 +58,9 @@ namespace Project.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "827e689c-bcf1-4c23-9f5b-6cd8b6dd1c1d",
-                            Name = "Manager",
-                            NormalizedName = "MANAGER"
+                            ConcurrencyStamp = "012dc8b0-c247-40c9-a4d9-72a163e5ef7b",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         });
                 });
 
@@ -258,16 +258,16 @@ namespace Project.DAL.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "df0c1433-3d67-4da6-803a-e8b7a9336917",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(6940),
+                            ConcurrencyStamp = "d4ea9623-4bc8-4775-ac7b-1e992633a00d",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(8635),
                             Email = "dilibalcihan@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DILIBALCIHAN@GMAIL.COM",
                             NormalizedUserName = "CIHAN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPfY8NTL3FDDSg0w7jz+FH/hqc5fdaODcxhRRI6LTslLDmVL3416O3hZ2mtkHfo/eQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL3bsjfIoWhaAKUCQtNHf/VRzh0F2u57S5S0MpULYAuJUK5rd7LzqoT76TTb9nY6GA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a40f3514-2c8f-4375-9038-9910fe0ce6d3",
+                            SecurityStamp = "8bd10bea-6fe7-43b5-be5a-ef227c715c01",
                             Status = 1,
                             TwoFactorEnabled = false,
                             UserName = "cihan"
@@ -310,81 +310,81 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 1,
-                            CategoryName = "Toys",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(1893),
-                            Description = "Ekşili umut bilgisayarı nemo gördüm şafak patlıcan doğru corporis ekşili.",
+                            CategoryName = "Industrial",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(3006),
+                            Description = "Quia corporis voluptatem koştum beatae dergi cezbelendi quae vitae ve.",
                             Status = 1
                         },
                         new
                         {
                             ID = 2,
                             CategoryName = "Music",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(2521),
-                            Description = "Çobanın ut makinesi velit quasi ut enim accusantium batarya commodi.",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(3891),
+                            Description = "Quis et reprehenderit sandalye ratione ducimus tempora hesap salladı adresini.",
                             Status = 1
                         },
                         new
                         {
                             ID = 3,
-                            CategoryName = "Clothing",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(2841),
-                            Description = "Masaya kapının reprehenderit iusto voluptatum voluptatem minima sinema anlamsız doloremque.",
+                            CategoryName = "Computers",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(4144),
+                            Description = "Voluptas ipsam açılmadan dolorem dolor karşıdakine dergi değirmeni ea consequatur.",
                             Status = 1
                         },
                         new
                         {
                             ID = 4,
-                            CategoryName = "Toys",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(3032),
-                            Description = "Anlamsız kalemi düşünüyor adanaya duyulmamış yaptı için velit olduğu eius.",
+                            CategoryName = "Baby",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(4368),
+                            Description = "İpsa et sıradanlıktan biber nesciunt layıkıyla accusantium eve eve olduğu.",
                             Status = 1
                         },
                         new
                         {
                             ID = 5,
-                            CategoryName = "Grocery",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(3208),
-                            Description = "Layıkıyla quia sinema qui sıla dolayı tv fugit labore telefonu.",
+                            CategoryName = "Jewelery",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(4639),
+                            Description = "Un sit kutusu sunt vitae rem mutlu çorba perferendis blanditiis.",
                             Status = 1
                         },
                         new
                         {
                             ID = 6,
-                            CategoryName = "Outdoors",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(3389),
-                            Description = "Velit totam quasi sequi voluptatem laudantium ratione nisi qui çobanın.",
+                            CategoryName = "Home",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(5044),
+                            Description = "Ad numquam qui incidunt totam çakıl non sayfası gül consequatur.",
                             Status = 1
                         },
                         new
                         {
                             ID = 7,
-                            CategoryName = "Games",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(3696),
-                            Description = "Şafak dağılımı numquam layıkıyla otobüs rem velit eaque gördüm aperiam.",
+                            CategoryName = "Toys",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(5173),
+                            Description = "Voluptatem ab exercitationem sandalye dağılımı açılmadan in laboriosam hesap nemo.",
                             Status = 1
                         },
                         new
                         {
                             ID = 8,
-                            CategoryName = "Computers",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(3884),
-                            Description = "Enim ipsa yazın aspernatur molestiae aut in ipsam çakıl çıktılar.",
+                            CategoryName = "Toys",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(5290),
+                            Description = "Umut çarpan aspernatur çıktılar domates ex consequatur et dolor adanaya.",
                             Status = 1
                         },
                         new
                         {
                             ID = 9,
-                            CategoryName = "Electronics",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(4064),
-                            Description = "Veniam blanditiis incidunt ea gazete vitae aut nesciunt mıknatıslı ki.",
+                            CategoryName = "Shoes",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(5404),
+                            Description = "Işık magnam ki sıfat sayfası eos in amet gitti magnam.",
                             Status = 1
                         },
                         new
                         {
                             ID = 10,
-                            CategoryName = "Automotive",
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(4238),
-                            Description = "Voluptatem corporis voluptatem ea ducimus sed mıknatıslı quia adipisci dolore.",
+                            CategoryName = "Music",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(5596),
+                            Description = "Öyle nesciunt şafak kapının quam masaya bahar un dergi filmini.",
                             Status = 1
                         });
                 });
@@ -466,6 +466,9 @@ namespace Project.DAL.Migrations
                     b.Property<int>("OffNumber")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("OffTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -482,7 +485,7 @@ namespace Project.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<decimal>("Amount")
+                    b.Property<decimal>("ActualAmount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -491,15 +494,15 @@ namespace Project.DAL.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal>("ExpectedAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("PredictedAmount")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -674,101 +677,101 @@ namespace Project.DAL.Migrations
                         {
                             ID = 1,
                             CategoryID = 1,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(4787),
-                            ProductName = "Ergonomic Wooden Sausages",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(5904),
+                            ProductName = "Fantastic Cotton Computer",
                             Status = 1,
                             Unit = "Porsiyon",
-                            UnitPrice = 844.29m
+                            UnitPrice = 454.01m
                         },
                         new
                         {
                             ID = 2,
                             CategoryID = 2,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5120),
-                            ProductName = "Awesome Fresh Soap",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(6149),
+                            ProductName = "Handcrafted Plastic Chips",
                             Status = 1,
                             Unit = "Porsiyon",
-                            UnitPrice = 741.79m
+                            UnitPrice = 647.64m
                         },
                         new
                         {
                             ID = 3,
                             CategoryID = 3,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5263),
-                            ProductName = "Sleek Frozen Chicken",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(6243),
+                            ProductName = "Practical Plastic Shirt",
                             Status = 1,
                             Unit = "Porsiyon",
-                            UnitPrice = 200.75m
+                            UnitPrice = 757.28m
                         },
                         new
                         {
                             ID = 4,
                             CategoryID = 4,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5398),
-                            ProductName = "Gorgeous Steel Sausages",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(6349),
+                            ProductName = "Handcrafted Rubber Fish",
                             Status = 1,
                             Unit = "Porsiyon",
-                            UnitPrice = 106.61m
+                            UnitPrice = 912.47m
                         },
                         new
                         {
                             ID = 5,
                             CategoryID = 5,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5530),
-                            ProductName = "Ergonomic Plastic Fish",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(6482),
+                            ProductName = "Licensed Wooden Chicken",
                             Status = 1,
                             Unit = "Porsiyon",
-                            UnitPrice = 757.35m
+                            UnitPrice = 780.66m
                         },
                         new
                         {
                             ID = 6,
                             CategoryID = 6,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5643),
-                            ProductName = "Refined Granite Bike",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(6633),
+                            ProductName = "Handcrafted Plastic Bike",
                             Status = 1,
                             Unit = "Porsiyon",
-                            UnitPrice = 270.07m
+                            UnitPrice = 228.01m
                         },
                         new
                         {
                             ID = 7,
                             CategoryID = 7,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5765),
-                            ProductName = "Fantastic Soft Chair",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(6886),
+                            ProductName = "Refined Soft Keyboard",
                             Status = 1,
                             Unit = "Porsiyon",
-                            UnitPrice = 529.05m
+                            UnitPrice = 475.74m
                         },
                         new
                         {
                             ID = 8,
                             CategoryID = 8,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(5991),
-                            ProductName = "Awesome Frozen Soap",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(7238),
+                            ProductName = "Ergonomic Cotton Ball",
                             Status = 1,
                             Unit = "Porsiyon",
-                            UnitPrice = 656.09m
+                            UnitPrice = 711.62m
                         },
                         new
                         {
                             ID = 9,
                             CategoryID = 9,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(6097),
-                            ProductName = "Refined Steel Bacon",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(7339),
+                            ProductName = "Handmade Metal Tuna",
                             Status = 1,
                             Unit = "Porsiyon",
-                            UnitPrice = 837.10m
+                            UnitPrice = 467.86m
                         },
                         new
                         {
                             ID = 10,
                             CategoryID = 10,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(6216),
-                            ProductName = "Unbranded Steel Bike",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(7435),
+                            ProductName = "Gorgeous Wooden Car",
                             Status = 1,
                             Unit = "Porsiyon",
-                            UnitPrice = 147.23m
+                            UnitPrice = 214.64m
                         });
                 });
 
@@ -804,7 +807,7 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 702, DateTimeKind.Local).AddTicks(6436),
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 603, DateTimeKind.Local).AddTicks(8083),
                             Name = "Filtre Kahve",
                             Status = 1
                         });
@@ -865,9 +868,12 @@ namespace Project.DAL.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("Situation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<int>("TableNo")
                         .HasColumnType("int");
@@ -880,71 +886,81 @@ namespace Project.DAL.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8682),
-                            Status = "Bos",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 748, DateTimeKind.Local).AddTicks(5107),
+                            Situation = "Bos",
+                            Status = 1,
                             TableNo = 1
                         },
                         new
                         {
                             ID = 2,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8720),
-                            Status = "Bos",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 748, DateTimeKind.Local).AddTicks(5142),
+                            Situation = "Bos",
+                            Status = 1,
                             TableNo = 2
                         },
                         new
                         {
                             ID = 3,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8721),
-                            Status = "Bos",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 748, DateTimeKind.Local).AddTicks(5144),
+                            Situation = "Bos",
+                            Status = 1,
                             TableNo = 3
                         },
                         new
                         {
                             ID = 4,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8723),
-                            Status = "Bos",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 748, DateTimeKind.Local).AddTicks(5145),
+                            Situation = "Bos",
+                            Status = 1,
                             TableNo = 4
                         },
                         new
                         {
                             ID = 5,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8724),
-                            Status = "Bos",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 748, DateTimeKind.Local).AddTicks(5146),
+                            Situation = "Bos",
+                            Status = 1,
                             TableNo = 5
                         },
                         new
                         {
                             ID = 6,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8736),
-                            Status = "Bos",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 748, DateTimeKind.Local).AddTicks(5157),
+                            Situation = "Bos",
+                            Status = 1,
                             TableNo = 6
                         },
                         new
                         {
                             ID = 7,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8873),
-                            Status = "Bos",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 748, DateTimeKind.Local).AddTicks(5158),
+                            Situation = "Bos",
+                            Status = 1,
                             TableNo = 7
                         },
                         new
                         {
                             ID = 8,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8875),
-                            Status = "Bos",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 748, DateTimeKind.Local).AddTicks(5159),
+                            Situation = "Bos",
+                            Status = 1,
                             TableNo = 8
                         },
                         new
                         {
                             ID = 9,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8876),
-                            Status = "Bos",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 748, DateTimeKind.Local).AddTicks(5160),
+                            Situation = "Bos",
+                            Status = 1,
                             TableNo = 9
                         },
                         new
                         {
                             ID = 10,
-                            CreatedDate = new DateTime(2024, 7, 10, 16, 35, 55, 865, DateTimeKind.Local).AddTicks(8878),
-                            Status = "Bos",
+                            CreatedDate = new DateTime(2024, 7, 14, 17, 35, 49, 748, DateTimeKind.Local).AddTicks(5162),
+                            Situation = "Bos",
+                            Status = 1,
                             TableNo = 10
                         });
                 });

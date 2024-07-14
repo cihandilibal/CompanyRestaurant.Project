@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.BLL.Managers.Abstracts;
-using Project.BLL.Managers.Concretes;
-using Project.COREMVC.Models.Recipes.PageVMs;
-using Project.COREMVC.Models.Recipes.RequestModels;
-using Project.COREMVC.Models.Recipes.ResponseModels;
 using Project.ENTITIES.Models;
+using Project.COREMVC.Models.Recipes.ResponseModels;
+using Project.COREMVC.Models.Recipes.PageVMs;
+using Project.BLL.Managers.Concretes;
 
 namespace Project.COREMVC.Controllers
 {
@@ -23,7 +22,8 @@ namespace Project.COREMVC.Controllers
             recipes = _recipeManager.Select(x => new RecipeResponseModel
             {
                 ID = x.ID,
-                Name = x.Name
+                Name = x.Name,
+                Status = x.Status
             }).ToList();
             GetRecipesPageVM grpVm = new GetRecipesPageVM()
             {
@@ -51,14 +51,33 @@ namespace Project.COREMVC.Controllers
 
         public async Task<IActionResult> DeleteRecipe(int id)
         {
-            _recipeManager.Delete(await _recipeManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Urun recetesi bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _recipeManager.Delete(await _recipeManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
+
         public async Task<IActionResult> DestroyRecipe(int id)
         {
-            _recipeManager.Destroy(await _recipeManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Urun recetesi bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _recipeManager.Destroy(await _recipeManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
+
+
         public async Task<IActionResult> UpdateRecipe(int id)
         {
             Recipe recipe = await _recipeManager.FindAsync(id);
@@ -71,7 +90,7 @@ namespace Project.COREMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCategory(UpdateRecipePageVM model) 
+        public async Task<IActionResult> UpdateRecipe(UpdateRecipePageVM model) 
         {
             Recipe recipe = new Recipe();
             recipe.ID = model.UpdateRecipeVM.ID;

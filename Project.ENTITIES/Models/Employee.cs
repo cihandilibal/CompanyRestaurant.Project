@@ -14,5 +14,6 @@ namespace Project.ENTITIES.Models
         public string MobilePhone { get; set; }
         public string Address { get; set; }
         public int OffNumber { get; set; }
+        public DateTime OffTime { get; set; }
     }
 }

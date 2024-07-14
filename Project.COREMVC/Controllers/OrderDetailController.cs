@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.BLL.Managers.Abstracts;
-using Project.BLL.Managers.Concretes;
-using Project.COREMVC.Models.OrderDetails.PageVMs;
-using Project.COREMVC.Models.OrderDetails.RequestModels;
-using Project.COREMVC.Models.OrderDetails.ResponseModels;
 using Project.ENTITIES.Models;
+using Project.COREMVC.Models.OrderDetails.PageVMs;
+using Project.COREMVC.Models.OrderDetails.ResponseModels;
+using Microsoft.CodeAnalysis;
+using Project.BLL.Managers.Concretes;
+using System;
+
 
 
 namespace Project.COREMVC.Controllers
@@ -21,22 +23,23 @@ namespace Project.COREMVC.Controllers
         public IActionResult GetOrderDetails()
         {
             List<OrderDetailsResponseModel> orderDetails = _orderDetailManager.Select(x => new OrderDetailsResponseModel
-            {    
+            {
                 OrderID = x.OrderID,
-                ProductID =  x.ProductID,
+                ProductID = x.ProductID,
                 Quantity = x.Quantity,
                 Unit = x.Unit,
                 UnitPrice = x.UnitPrice,
-                TotalPrice = x.TotalPrice
+                TotalPrice = x.TotalPrice,
+                Status = x.Status
             }).ToList();
-            
+
             OrderDetailsPageVM odpVm = new OrderDetailsPageVM()
             {
                 OrderDetails = orderDetails
             };
             return View(odpVm);
         }
-           
+
         public IActionResult AddDetail()
         {
             return View();
@@ -45,7 +48,7 @@ namespace Project.COREMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> AddDetail(AddOrderDetailPageVM model)
         {
-            
+
             OrderDetail od = new()
             {
                 OrderID = model.OrderDetailRequestModel.OrderID,
@@ -53,53 +56,25 @@ namespace Project.COREMVC.Controllers
                 Quantity = model.OrderDetailRequestModel.Quantity,
                 Unit = model.OrderDetailRequestModel.Unit,
                 UnitPrice = model.OrderDetailRequestModel.UnitPrice,
-                TotalPrice =model.OrderDetailRequestModel.TotalPrice
+                TotalPrice = model.OrderDetailRequestModel.TotalPrice
             };
 
             await _orderDetailManager.AddAsync(od);
             return RedirectToAction("GetOrderDetails");
         }
-        public async Task<IActionResult> DeleteDetail(int id)
+        public async Task<IActionResult> DeleteOrderDetail(int orderId, int productId)
         {
-            _orderDetailManager.Delete(await _orderDetailManager.FindAsync(id));
+            OrderDetail originaldata = await _orderDetailManager.FirstOrDefaultAsync(x => x.OrderID == orderId && x.ProductID == productId);
+             _orderDetailManager.Delete(originaldata);
             return RedirectToAction("GetOrderDetails");
         }
 
-        public async Task<IActionResult> DestroyDetail(int id)
+        public async Task<IActionResult> DestroyOrderDetail(int orderId, int productId)
         {
-            _orderDetailManager.Destroy(await _orderDetailManager.FindAsync(id));
+            OrderDetail originaldata = await _orderDetailManager.FirstOrDefaultAsync(x => x.OrderID == orderId && x.ProductID == productId);
+            _orderDetailManager.Destroy(originaldata);
             return RedirectToAction("GetOrderDetails");
         }
-        public async Task<IActionResult> UpdateOrderDetail(int orderId,int productId)
-        {
-            OrderDetail orderDetail =  await _orderDetailManager.FirstOrDefaultAsync(x=>x.OrderID == orderId && x.ProductID == productId );
-            UpdateOrderDetailVM updateOrderDetailVM = new UpdateOrderDetailVM();
-            updateOrderDetailVM.OrderID = orderDetail.OrderID;
-            updateOrderDetailVM.ProductID = orderDetail.ProductID;
-            updateOrderDetailVM.Quantity = orderDetail.Quantity;
-            updateOrderDetailVM.Unit = orderDetail.Unit;
-            updateOrderDetailVM.UnitPrice = orderDetail.UnitPrice;
-            updateOrderDetailVM.TotalPrice = orderDetail.TotalPrice;
-            UpdateOrderDetailPageVM uodpVm = new UpdateOrderDetailPageVM();
-            uodpVm.UpdateOrderDetailVM = updateOrderDetailVM;
-            return View(uodpVm);
-
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> UpdateOrderDetail(UpdateOrderDetailPageVM model)
-        {
-            OrderDetail orderDetail = new OrderDetail();
-            orderDetail.OrderID = model.UpdateOrderDetailVM.OrderID;
-            orderDetail.ProductID = model.UpdateOrderDetailVM.OrderID;
-            orderDetail.Quantity = model.UpdateOrderDetailVM.Quantity;
-            orderDetail.Unit = model.UpdateOrderDetailVM.Unit;
-            orderDetail.UnitPrice = model.UpdateOrderDetailVM.UnitPrice;
-            orderDetail.TotalPrice = model.UpdateOrderDetailVM.TotalPrice;
-            await _orderDetailManager.UpdateAsync(orderDetail);
-            return RedirectToAction("GetOrderDetails");
-        }
-        
     }
-
+    
 }

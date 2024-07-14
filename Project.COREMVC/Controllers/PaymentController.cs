@@ -5,46 +5,24 @@ using Project.COREMVC.Models.Payments.RequestModels;
 using Project.COREMVC.Models.Payments.PageVMs;
 using Project.COREMVC.Models.Payments.ResponseModels;
 using Project.ENTITIES.Models;
-using Project.COREMVC.Models.Ingredients.PageVMs;
+using System.Collections.Generic;
+
 
 namespace Project.COREMVC.Controllers
 {
     public class PaymentController : Controller
     {
         readonly IPaymentManager _paymentManager;
+        
+        private Dictionary<DateTime, Dictionary<string, decimal>> dailyGiro;
+        private Dictionary<string, Dictionary<int, decimal>> weeklyGiro;
+        private Dictionary<string, Dictionary<string, decimal>> monthlyGiro;
 
         public PaymentController(IPaymentManager paymentManager)
         {
             _paymentManager = paymentManager;
         }
-        public IActionResult DailyReport(DateTime date)
-        {
-            decimal dailyGiro = _paymentManager.GetDailyGiro(date);
-            ViewBag.Date = date;
-            ViewBag.DailyGiro = dailyGiro;
-
-            return View();
-        }
-        public IActionResult WeeklyReport(DateTime startOfWeek)
-
-        {
-            decimal weeklyGiro = _paymentManager.GetWeeklyGiro(startOfWeek);
-            ViewBag.StartOfWeek = startOfWeek;
-            ViewBag.WeeklyGiro = weeklyGiro;
-
-            return View();
-        }
-
-        public IActionResult MonthlyReport(int year, int month)
-        {
-            decimal monthlyGiro = _paymentManager.GetMonthlyGiro(year, month);
-            ViewBag.Year = year;
-            ViewBag.Month = month;
-            ViewBag.MonthlyGiro = monthlyGiro;
-            return View();
-        }
-
-        public IActionResult Index()
+        public IActionResult Index(DateTime date)
         {
             List<PaymentResponseModel> payments = _paymentManager.Select(x => new PaymentResponseModel
             {
@@ -53,7 +31,8 @@ namespace Project.COREMVC.Controllers
                 Price = x.Price,
                 Currency = x.Currency,
                 Date = x.Date,
-               
+                Status = x.Status
+
             }).ToList();
             PaymentsPageVM pVm = new PaymentsPageVM()
             {
@@ -62,6 +41,7 @@ namespace Project.COREMVC.Controllers
             };
             return View(pVm);
         }
+
         public IActionResult CreatePayment()
         {
             return View();
@@ -83,14 +63,32 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> DeletePayment(int id)
         {
-            _paymentManager.Delete(await _paymentManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Odeme bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _paymentManager.Delete(await _paymentManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
+
         public async Task<IActionResult> DestroyPayment(int id)
         {
-            _paymentManager.Destroy(await _paymentManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Odeme bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _paymentManager.Destroy(await _paymentManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
+
         public async Task<IActionResult> UpdatePayment(int id)
         {
             Payment payment = await _paymentManager.FindAsync(id);
@@ -119,5 +117,29 @@ namespace Project.COREMVC.Controllers
             await _paymentManager.UpdateAsync(payment);
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> DailyReport(DateTime startDate, DateTime endDate)
+        {
+            dailyGiro = await _paymentManager.GetDailyGiroAsync(startDate, endDate);
+
+            return View(dailyGiro);
+        }
+
+        public async Task<IActionResult> WeeklyReport(DateTime startDate, DateTime endDate)
+        {
+            weeklyGiro = await _paymentManager.GetWeeklyGiroAsync(startDate, endDate);
+
+            return View(weeklyGiro);
+        }
+
+        public async Task<IActionResult> MonthlyReport(DateTime startDate, DateTime endDate)
+        {
+            monthlyGiro = await _paymentManager.GetMonthlyGiroAsync(startDate, endDate);
+
+            return View(monthlyGiro);
+        }
+
     }
+
+
 }

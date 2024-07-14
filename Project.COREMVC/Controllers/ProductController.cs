@@ -30,7 +30,8 @@ namespace Project.COREMVC.Controllers
                  ProductName = x.ProductName,
                  UnitPrice = x.UnitPrice,
                  Unit = x.Unit,
-                 CategoryName = x.Category.CategoryName
+                 CategoryName = x.Category.CategoryName,
+                 Status = x.Status
             }).ToList();
             GetProductsPageVM gppVM = new GetProductsPageVM()
             {
@@ -70,14 +71,32 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            _productManager.Delete(await _productManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Urun bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _productManager.Delete(await _productManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
+
         public async Task<IActionResult> DestroyProduct(int id)
         {
-            _productManager.Destroy(await _productManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Urun bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _productManager.Destroy(await _productManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
+
         public async Task<IActionResult> UpdateProduct(int id)
         {
             Product product = await _productManager.FindAsync(id);

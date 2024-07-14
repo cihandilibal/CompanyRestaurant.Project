@@ -20,7 +20,7 @@ namespace Project.BLL.ServiceInjections
             IConfiguration? configuration = provider.GetService<IConfiguration>();
 
             services.AddDbContextPool<MyContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("MyConnection")).UseLazyLoadingProxies());
-           
+
             return services;
         }
     }

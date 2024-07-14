@@ -1,19 +1,27 @@
 ﻿@model IngredientsPageVM
 
-<h1>
-    <span class="text-danger">@TempData["Message"]</span>
-</h1>
+@if (TempData["Message"] != null)
+{
+    <h1 class="alert alert-danger">
+        <b>@TempData["Message"]!</b>
+    </h1>
+}
 
 <h3> Stok Listesi</h3>
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>PredictedAmount</th>
-            <th>Unit</th>
-            <th>UnitPrice</th>
+            <th> ID</th>
+            <th>Adi</th>
+            <th>Gercek Miktari</th>
+            <th>Beklenen Miktar/th>
+            <th>Birimi</th>
+            <th>Birim Fiyatı</th>
+            <th>Durum</th>
+            <th class="hidden-phone">Guncelle</th>
+            <th class="hidden-phone">Sil</th>
+            <th class="hidden-phone">Yok Et</th>
+            <th class="hidden-phone">Stok Kontrol</th>
         </tr>
     </thead>
     <tbody>
@@ -22,13 +30,15 @@
             <tr>
                 <td>@item.ID</td>
                 <td>@item.Name</td>
-                <td>@item.Amount</td>
-                <td>@item.PredictedAmount</td>
+                <td>@item.ActualAmount</td>
+                <td>@item.ExpectedAmount</td>
                 <td>@item.Unit</td>
                 <td>@item.UnitPrice</td>
+                <td>@item.Status</td>
                 <td><a asp-controller="Ingredient" asp-action="UpdateIngredient" asp-route-id="@item.ID" class="btn btn-warning">Güncelle</a></td>
                 <td><a asp-controller="Ingredient" asp-action="DeleteIngredient" asp-route-id="@item.ID" class="btn btn-danger">Sil</a></td>
                 <td><a asp-controller="Ingredient" asp-action="DestroyIngredient" asp-route-id="@item.ID" class="btn btn-danger">Yok et</a></td>
+                <td><a asp-controller="Ingredient" asp-action="CheckStock" asp-route-id="@item.ID" class="btn btn-danger">Stok kontrol</a></td>
             </tr>
         }
     </tbody>

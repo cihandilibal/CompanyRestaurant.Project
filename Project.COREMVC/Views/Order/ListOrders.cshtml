@@ -4,9 +4,12 @@ Siparis detaylarını gormek icin <a asp-controller="OrderDetail" asp-action="Ge
 
 Yeni siparis detayları eklemek icin <a asp-controller="OrderDetail" asp-action="AddDetail">tıklayınız</a>
 
-<h1>
-    <span class="text-danger">@TempData["Message"]</span>
-</h1>
+@if (TempData["Message"] != null)
+{
+    <h1 class="alert alert-danger">
+        <b>@TempData["Message"]!</b>
+    </h1>
+}
 
 <section class="panel">
     <header class="panel-heading">
@@ -20,6 +23,7 @@ Yeni siparis detayları eklemek icin <a asp-controller="OrderDetail" asp-action=
                         <th>Siparis ID</th>
                         <th>Masa Numarası</th>
                         <th>Siparis Zamanı</th>
+                        <th>Durum</th>
                         <th class="hidden-phone">Guncelle</th>
                         <th class="hidden-phone">Sil</th>
                         <th class="hidden-phone">Yok Et</th>
@@ -33,6 +37,7 @@ Yeni siparis detayları eklemek icin <a asp-controller="OrderDetail" asp-action=
                             <td>@item.ID</td>
                             <td> @item.TableNo</td>
                             <td> @item.OrderTime</td>
+                            <td>@item.Status</td>
                             <td class="center hidden-phone"><a asp-action="UpdateOrder" asp-route-id="@item.ID" class="btn btn-warning">Güncelle</a></td>
                             <td class="center hidden-phone"><a asp-action="DeleteOrder" asp-route-id="@item.ID" class="btn btn-danger">Sil</a></td>
                             <td class="center hidden-phone"><a asp-action="DestroyOrder" asp-route-id="@item.ID" class="btn btn-danger">Yok et</a></td>

@@ -21,7 +21,7 @@ namespace Project.DAL.Extensions
                 {
                     ID = i,
                     TableNo = i,
-                    Status = "Bos",
+                    Situation = "Bos",
                 };
 
                 tables.Add(t);

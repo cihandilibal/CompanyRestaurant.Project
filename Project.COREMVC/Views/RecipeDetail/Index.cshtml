@@ -10,11 +10,11 @@
                 <thead>
                     <tr>
                         <th>Recete ID</th>
-                        <th>Malzeme Adı</th>
+                        <th>Malzeme ID</th>
                         <th>Malzeme Adedi</th>
                         <th>Birim</th>
                         <th>Talimat</th>
-                        <th class="hidden-phone">Guncelle</th>
+                        <th>Durum</th>
                         <th class="hidden-phone">Sil</th>
                         <th class="hidden-phone">Yok Et</th>
                     </tr>
@@ -23,16 +23,17 @@
 
                     @foreach (RecipeDetailResponseModel item in Model.RecipeDetails)
                     {
-                        <tr class="gradeX">
-                            <td>@item.RecipeID</td>
-                            <td> @item.IngredientName</td>
-                            <td> @item.IngredientQuantity</td>
-                            <td> @item.Unit</td>
-                            <td> @item.Instruction</td>
-                            <td class="center hidden-phone"><a asp-action="UpdateDetail" asp-route-id="@item.RecipeID" class="btn btn-warning">Güncelle</a></td>
-                            <td class="center hidden-phone"><a asp-action="DeleteRecipeDetail" asp-route-id="@item.RecipeID" class="btn btn-danger">Sil</a></td>
-                            <td class="center hidden-phone"><a asp-action="DestroyRecipeDetail" asp-route-id="@item.RecipeID" class="btn btn-danger">Yok et</a></td>
-                        </tr>
+                            <tr class="gradeX">
+                                <td>@item.RecipeID</td>
+                                <td> @item.IngredientID</td>
+                                <td> @item.IngredientQuantity</td>
+                                <td> @item.Unit</td>
+                                <td> @item.Instruction</td>
+                                <td> @item.Status</td>
+                                <td class="center hidden-phone"><a asp-action="DeleteRecipeDetail" asp-route-recipeId="@item.RecipeID" asp-route-ingredientId="@item.IngredientID" class="btn btn-danger">Sil</a></td>
+                                <td class="center hidden-phone"><a asp-action="DestroyRecipeDetail" asp-route-recipeId="@item.RecipeID" asp-route-ingredientId="@item.IngredientID" class="btn btn-danger">Yok et</a></td>
+                            </tr>
+                        
                     }
                 </tbody>
             </table>

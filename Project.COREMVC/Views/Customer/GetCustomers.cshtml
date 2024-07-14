@@ -1,8 +1,11 @@
 ﻿@model GetCustomersPageVM
 
-<h1>
-    <span class="text-danger">@TempData["Message"]</span>
-</h1>
+@if (TempData["Message"] != null)
+{
+    <h1 class="alert alert-danger">
+        <b>@TempData["Message"]!</b>
+    </h1>
+}
 
 <section class="panel">
     <header class="panel-heading">
@@ -17,6 +20,7 @@
                         <th>Müsterinin Adı</th>
                         <th>Müsterinin Soyadı</th>
                         <th>Müsterinin Telefon Numarası</th>
+                        <th>Durum</th>
                         <th class="hidden-phone">Guncelle</th>
                         <th class="hidden-phone">Sil</th>
                         <th class="hidden-phone">Yok Et</th>
@@ -31,6 +35,7 @@
                             <td> @item.FirstName</td>
                             <td> @item.LastName</td>
                             <td> @item.MobilePhone</td>
+                            <td> @item.Status</td>
                             <td class="center hidden-phone"><a asp-action="UpdateCustomer" asp-route-id="@item.ID" class="btn btn-warning">Güncelle</a></td>
                             <td class="center hidden-phone"><a asp-action="DeleteCustomer" asp-route-id="@item.ID" class="btn btn-danger">Sil</a></td>
                             <td class="center hidden-phone"><a asp-action="DestroyCustomer" asp-route-id="@item.ID" class="btn btn-danger">Yok et</a></td>

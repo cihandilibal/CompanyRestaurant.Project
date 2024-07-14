@@ -9,5 +9,6 @@ namespace Project.DAL.Repositories.Abstracts
 {
     public interface IProductRepository: IRepository<Product>
     {
+        
     }
 }

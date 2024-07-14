@@ -9,5 +9,6 @@ namespace Project.DAL.Repositories.Abstracts
 {
     public interface IPaymentRepository: IRepository<Payment>
     {
+        Task<List<Payment>> GetPaymentsAsync(DateTime startDate, DateTime endDate);
     }
 }

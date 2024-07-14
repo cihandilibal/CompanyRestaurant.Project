@@ -23,7 +23,8 @@ namespace Project.COREMVC.Controllers
             {
                 ID = x.ID,
                 CategoryName = x.CategoryName,
-                Description = x.Description
+                Description = x.Description,
+                Status = x.Status
             }).ToList();
             GetCategoriesPageVM gcpVm = new GetCategoriesPageVM()
             {
@@ -50,14 +51,32 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            _categoryManager.Delete(await _categoryManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Kategori bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _categoryManager.Delete(await _categoryManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
+
         public async Task<IActionResult> DestroyCategory(int id)
         {
-            _categoryManager.Destroy(await _categoryManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Kategori bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _categoryManager.Destroy(await _categoryManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
+
         public async Task<IActionResult> UpdateCategory(int id)
         {
             Category category = await _categoryManager.FindAsync(id);

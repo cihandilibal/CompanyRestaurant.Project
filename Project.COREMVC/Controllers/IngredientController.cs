@@ -24,10 +24,11 @@ namespace Project.COREMVC.Controllers
             {
                 Name = x.Name,
                 ID = x.ID,
-                Amount = x.Amount,
-                PredictedAmount = x.PredictedAmount,
+                ActualAmount = x.ActualAmount,
+                ExpectedAmount = x.ExpectedAmount,
                 Unit = x.Unit,
-                UnitPrice = x.UnitPrice
+                UnitPrice = x.UnitPrice,
+                Status = x.Status
             }).ToList();
             decimal totalCost = _ingredientManager.Cost();
 
@@ -51,7 +52,7 @@ namespace Project.COREMVC.Controllers
             Ingredient i = new()
             {
                 Name= item.AddIngredientRequestModel.Name,
-                Amount= item.AddIngredientRequestModel.Amount,
+                ActualAmount= item.AddIngredientRequestModel.ActualAmount,
                 Unit= item.AddIngredientRequestModel.Unit,
                 UnitPrice= item.AddIngredientRequestModel.UnitPrice
             };
@@ -60,22 +61,41 @@ namespace Project.COREMVC.Controllers
         }
         public async Task<IActionResult> DeleteIngredient(int id)
         {
-            _ingredientManager.Delete(await _ingredientManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Malzeme bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _ingredientManager.Delete(await _ingredientManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
-        public async Task<IActionResult> DestroyCategory(int id)
+
+        public async Task<IActionResult> DestroyIngredient(int id)
         {
-            _ingredientManager.Destroy(await _ingredientManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Malzeme bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _ingredientManager.Destroy(await _ingredientManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
+
+
         public async Task<IActionResult> UpdateIngredient(int id)
         {
            Ingredient ingredient = await _ingredientManager.FindAsync(id);
            UpdateIngredientVM updateIngredientVM = new UpdateIngredientVM();
             updateIngredientVM.ID = ingredient.ID;
             updateIngredientVM.Name = ingredient.Name;
-            updateIngredientVM.Amount = ingredient.Amount;
-            updateIngredientVM.PredictedAmount = ingredient.PredictedAmount;
+            updateIngredientVM.ActualAmount = ingredient.ActualAmount;
+            updateIngredientVM.ExpectedAmount = ingredient.ExpectedAmount;
             updateIngredientVM.Unit = ingredient.Unit;
             updateIngredientVM.UnitPrice = ingredient.UnitPrice;
             UpdateIngredientPageVM uipVm = new UpdateIngredientPageVM();
@@ -89,17 +109,19 @@ namespace Project.COREMVC.Controllers
             Ingredient ingredient = new Ingredient();
             ingredient.ID = model.UpdateIngredientVM.ID;
             ingredient.Name = model.UpdateIngredientVM.Name;
-            ingredient.Amount = model.UpdateIngredientVM.Amount;
-            ingredient.PredictedAmount = model.UpdateIngredientVM.PredictedAmount;
+            ingredient.ActualAmount = model.UpdateIngredientVM.ActualAmount;
+            ingredient.ExpectedAmount = model.UpdateIngredientVM.ExpectedAmount;
             ingredient.Unit = model.UpdateIngredientVM.Unit;
             ingredient.UnitPrice = model.UpdateIngredientVM.UnitPrice;
             await _ingredientManager.UpdateAsync(ingredient);
             return RedirectToAction("Index");
         }
-        public IActionResult CheckStock(int id)
+
+
+        public async Task<IActionResult> CheckStock(int id)
         {
-            ViewBag.Message = _ingredientManager.ControlIngredient(id);
-            return View();
+            TempData["Message"] = await _ingredientManager.ControlIngredient(id);
+            return RedirectToAction("Index");
         }
     }
 }

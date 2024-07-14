@@ -1,0 +1,57 @@
+﻿@model ListEmployeePageVM
+
+@if (TempData["Message"] != null)
+{
+    <h1 class="alert alert-danger">
+        <b>@TempData["Message"]!</b>
+    </h1>
+}
+
+<section class="panel">
+    <header class="panel-heading">
+        <h3> Calısanlar </h3>
+    </header>
+    <div class="panel-body">
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                <thead>
+                    <tr>
+                        <th>Calısan ID</th>
+                        <th>Calısan Adı</th>
+                        <th>Calısan Soyadı</th>
+                        <th>Gorevi</th>
+                        <th>Telefon Numarası</th>
+                        <th>Adresi</th>
+                        <th>Izin Günü Sayısı</th>
+                        <th>Izin Tarihi</th>
+                        <th>Durum</th>
+                        <th class="hidden-phone">Guncelle</th>
+                        <th class="hidden-phone">Sil</th>
+                        <th class="hidden-phone">Yok Et</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (ListEmployeesResponseModel item in Model.Employees)
+                    {
+                        <tr class="gradeX">
+                            <td>@item.ID</td>
+                            <td> @item.FirstName</td>
+                            <td> @item.LastName</td>
+                            <td>@item.Duty</td>
+                            <td>@item.MobilePhone</td>
+                            <td>@item.Address</td>
+                            <td>@item.OffNumber</td>
+                            <td>@item.OffTime</td>
+                            <td>@item.Status</td>
+                            <td class="center hidden-phone"><a asp-action="UpdateEmployee" asp-route-id="@item.ID" class="btn btn-warning">Güncelle</a></td>
+                            <td class="center hidden-phone"><a asp-action="DeleteEmployee" asp-route-id="@item.ID" class="btn btn-danger">Sil</a></td>
+                            <td class="center hidden-phone"><a asp-action="DestroyEmployee" asp-route-id="@item.ID" class="btn btn-danger">Yok et</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>

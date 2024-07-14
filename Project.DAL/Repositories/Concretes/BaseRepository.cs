@@ -169,10 +169,5 @@ namespace Project.DAL.Repositories.Concretes
         {
             return _db.Set<T>().Where(exp).ToList();
         }
-
-        public async Task <T> EditAsync(int id1, int id2)
-        {
-            return await _db.Set<T>().FirstOrDefaultAsync();
-        }
     }
 }

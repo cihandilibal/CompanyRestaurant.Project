@@ -1,4 +1,6 @@
-﻿namespace Project.COREMVC.Models.Products.ResponseModels
+﻿using Project.ENTITIES.Enums;
+
+namespace Project.COREMVC.Models.Products.ResponseModels
 {
     public class ProductResponseModel
     {
@@ -7,5 +9,6 @@
         public decimal UnitPrice { get; set; }
         public string CategoryName { get; set; }
         public string Unit { get; set; }
+        public DataStatus Status { get; set; }
     }
 }

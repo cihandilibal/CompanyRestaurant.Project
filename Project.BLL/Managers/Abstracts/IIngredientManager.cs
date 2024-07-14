@@ -11,7 +11,7 @@ namespace Project.BLL.Managers.Abstracts
      {
         decimal Cost();
 
-        string ControlIngredient(int id);
+        Task<string> ControlIngredient(int id);
      }
 
 }

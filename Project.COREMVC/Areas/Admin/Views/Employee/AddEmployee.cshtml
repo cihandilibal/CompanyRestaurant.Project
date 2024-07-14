@@ -1,0 +1,45 @@
+﻿@model AddEmployeePageVM
+
+<form asp-action="AddEmployee" asp-controller="Employee" method="post" class="p-3 w-75 m-auto">
+
+
+    <div class="mb-3">
+        <label>Calısan adını giriniz</label>
+        <input asp-for="AddEmployeeRequestModel.FirstName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısan soyadını giriniz</label>
+        <input asp-for="AddEmployeeRequestModel.LastName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısanın gorevini giriniz</label>
+        <input asp-for="AddEmployeeRequestModel.Duty" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısan telefon numarası giriniz</label>
+        <input asp-for="AddEmployeeRequestModel.MobilePhone" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısanın ev adresini giriniz</label>
+        <input asp-for="AddEmployeeRequestModel.Address" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısanın izin sayısını giriniz</label>
+        <input asp-for="AddEmployeeRequestModel.OffNumber" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Calısanın izin zamanını giriniz</label>
+        <input asp-for="AddEmployeeRequestModel.OffTime" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary"> Calısan Ekle</button>
+    </div>
+    
+</form>

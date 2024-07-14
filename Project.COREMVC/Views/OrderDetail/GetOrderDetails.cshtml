@@ -19,7 +19,7 @@
                         <th>Birimi</th>
                         <th>Birim Fiyatı</th>
                         <th>Toplam Siparis Fiyatı</th>
-                        <th class="hidden-phone">Guncelle</th>
+                        <th>Durum</th>
                         <th class="hidden-phone">Sil</th>
                         <th class="hidden-phone">Yok Et</th>
                     </tr>
@@ -35,11 +35,12 @@
                             <td> @item.Unit</td>
                             <td> @item.UnitPrice</td>
                             <td> @item.TotalPrice</td>
-                            <td class="center hidden-phone"><a asp-action="UpdateOrderDetail" asp-route-id="@item.OrderID" class="btn btn-warning">Güncelle</a></td>
-                            <td class="center hidden-phone"><a asp-action="DeleteOrderDetail" asp-route-id="@item.OrderID" class="btn btn-danger">Sil</a></td>
-                            <td class="center hidden-phone"><a asp-action="DestroyOrderDetail" asp-route-id="@item.OrderID" class="btn btn-danger">Yok et</a></td>
+                            <td> @item.Status</td>
+                            <td class="center hidden-phone"><a asp-action="DeleteOrderDetail" asp-route-orderId="@item.OrderID" asp-route-productId="@item.ProductID" class="btn btn-danger">Sil</a></td>
+                            <td class="center hidden-phone"><a asp-action="DestroyOrderDetail" asp-route-orderId="@item.OrderID" asp-route-productId="@item.ProductID" class="btn btn-danger">Yok et</a></td>
                         </tr>
                     }
+                    
                 </tbody>
             </table>
 

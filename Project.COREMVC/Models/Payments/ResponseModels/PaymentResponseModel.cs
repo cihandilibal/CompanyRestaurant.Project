@@ -1,4 +1,5 @@
-﻿using Project.ENTITIES.Models;
+﻿using Project.ENTITIES.Enums;
+using Project.ENTITIES.Models;
 
 namespace Project.COREMVC.Models.Payments.ResponseModels
 {
@@ -9,6 +10,7 @@ namespace Project.COREMVC.Models.Payments.ResponseModels
         public string Currency { get; set; }
         public DateTime Date { get; set; }
         public int OrderNo { get; set; }
+        public DataStatus Status { get; set; }
 
     }
 }

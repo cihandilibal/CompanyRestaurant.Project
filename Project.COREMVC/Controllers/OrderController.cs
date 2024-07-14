@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.BLL.Managers.Abstracts;
-using Project.BLL.Managers.Concretes;
 using Project.ENTITIES.Models;
-using Project.COREMVC.Models.Orders.RequestModels;
 using Project.COREMVC.Models.Orders.ResponseModels;
 using Project.COREMVC.Models.Orders.PageVMs;
+using Project.BLL.Managers.Concretes;
 
 
 namespace Project.COREMVC.Controllers
@@ -26,7 +25,8 @@ namespace Project.COREMVC.Controllers
             {
                 ID = x.ID,
                 TableNo = x.TableNo,
-                OrderTime = x.OrderTime
+                OrderTime = x.OrderTime,
+                Status = x.Status
             }).ToList();
 
             ListOrdersPageVM lopVm = new ListOrdersPageVM()
@@ -56,14 +56,30 @@ namespace Project.COREMVC.Controllers
 
         public async Task<IActionResult> DeleteOrder(int id)
         {
-            _orderManager.Delete(await _orderManager.FindAsync(id));
-            return RedirectToAction("ListOrders");
+            if (id == null)
+            {
+                TempData["Message"] = "Siparis bulunamadı";
+                return RedirectToAction("ListOrders");
+            }
+            else
+            {
+                _orderManager.Delete(await _orderManager.FindAsync(id));
+                return RedirectToAction("ListOrders");
+            }
         }
 
         public async Task<IActionResult> DestroyOrder(int id)
         {
-            _orderManager.Destroy(await _orderManager.FindAsync(id));
-            return RedirectToAction("ListOrders");
+            if (id == null)
+            {
+                TempData["Message"] = "Siparis bulunamadı";
+                return RedirectToAction("ListOrders");
+            }
+            else
+            {
+                _orderManager.Destroy(await _orderManager.FindAsync(id));
+                return RedirectToAction("ListOrders");
+            }
         }
 
         public async Task<IActionResult> UpdateOrder(int id)
@@ -88,9 +104,5 @@ namespace Project.COREMVC.Controllers
             await _orderManager.UpdateAsync(order);
             return RedirectToAction("ListOrders");
         }
-       
-
-       
-
     }
 }

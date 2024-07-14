@@ -23,22 +23,22 @@ namespace Project.BLL.Managers.Concretes
 
             foreach (Ingredient item in _inRep.GetActives())
             {
-                cost += item.UnitPrice * item.Amount;
+                cost += item.UnitPrice * item.ActualAmount; //malzeme satin alindiginda gerçek ile beklenen ayni.
             }
             return cost;
         }
        
-        public string ControlIngredient(int id)
+        public async Task<string> ControlIngredient(int id)
         {
-            Ingredient item = _inRep.Find(id);
-            decimal difference = Math.Abs((item.Amount - item.PredictedAmount) /item.Amount);
-            if (difference == 0.2M)
+            Ingredient item = await _inRep.FindAsync(id);
+            decimal difference = Math.Abs((item.ActualAmount - item.ExpectedAmount) /item.ExpectedAmount)*100;
+            if (difference >= 20)
             {
                 return "Uyarı: Stok Durumunu Kontrol Edin! ";
             }
-            return "Stok yeterli seviyede";
+            return "Stok Durumu Beklenilen Degerler Icinde";
         }
-        
 
+       
     }
 }

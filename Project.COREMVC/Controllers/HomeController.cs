@@ -66,7 +66,7 @@ namespace Project.COREMVC.Controllers
                     IdentityRole<int> appRole = await _roleManager.FindByNameAsync("Employee");
                     if (appRole == null) await _roleManager.CreateAsync(new() { Name = "Employee" });
                     await _userManager.AddToRoleAsync(appUser, "Employee");
-                    return RedirectToAction("Register");
+                    return RedirectToAction("Index");
                 }
                 foreach (IdentityError error in result.Errors)
                 {
@@ -94,9 +94,9 @@ namespace Project.COREMVC.Controllers
                 if (result.Succeeded)
                 {
                     IList<string> roles = await _userManager.GetRolesAsync(appUser);
-                    if (roles.Contains("Manager"))
+                    if (roles.Contains("Admin"))
                     {
-                        return RedirectToAction("Index", new { Area = "Manager" });
+                        return RedirectToAction("Index", new { Area = "Admin" });
                     }
                     else if (roles.Contains("Employee"))
                     {
@@ -110,7 +110,7 @@ namespace Project.COREMVC.Controllers
 
             return View(model);
         }
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Admin")]
         public IActionResult ManagerPanel()
         {
             return View();

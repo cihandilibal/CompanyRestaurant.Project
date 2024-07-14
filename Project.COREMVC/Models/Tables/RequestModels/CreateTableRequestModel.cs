@@ -3,6 +3,6 @@
     public class CreateTableRequestModel
     {
         public int TableNo { get; set; }
-        public string Status { get; set; }
+        public  string Situation { get; set; }
     }
 }

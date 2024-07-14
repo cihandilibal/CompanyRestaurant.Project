@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.BLL.Managers.Abstracts;
-using Project.BLL.Managers.Concretes;
-using Project.COREMVC.Models.Tables.PageVMs;
-using Project.COREMVC.Models.Tables.RequestModels;
-using Project.COREMVC.Models.Tables.ResponseModels;
 using Project.ENTITIES.Models;
+using Project.COREMVC.Models.Tables.ResponseModels;
+using Project.COREMVC.Models.Tables.PageVMs;
+using Project.BLL.Managers.Concretes;
+
+
 
 namespace Project.COREMVC.Controllers
 {
@@ -23,6 +24,7 @@ namespace Project.COREMVC.Controllers
             {
                 ID = x.ID,
                 TableNo = x.TableNo,
+                Situation = x.Situation,
                 Status = x.Status
             }).ToList();
             GetTablesPageVM gtpVm = new GetTablesPageVM()
@@ -39,27 +41,42 @@ namespace Project.COREMVC.Controllers
         }
 
         [HttpPost]
-
-        public async Task<IActionResult> AddTable(AddTablePageVM item)
+        public async Task<IActionResult> AddTable(AddTablePageVM model)
         {
            Table t = new()
            { 
-               TableNo = item.CreateTableRequestModel.TableNo,
-                Status = item.CreateTableRequestModel.Status
+               TableNo = model.CreateTableRequestModel.TableNo,
+               Situation = model.CreateTableRequestModel.Situation
            };
             await _tableManager.AddAsync(t);
             return RedirectToAction("Index");
         }
         public async Task<IActionResult> DeleteTable(int id)
         {
-            _tableManager.Delete(await _tableManager.FindAsync(id));
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                TempData["Message"] = "Masa bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _tableManager.Delete(await _tableManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
+
         public async Task<IActionResult> DestroyTable(int id)
         {
-            _tableManager.Delete(await _tableManager.FindAsync(id));
-            return RedirectToAction("Index");
-
+            if (id == null)
+            {
+                TempData["Message"] = "Masa bulunamadı";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _tableManager.Destroy(await _tableManager.FindAsync(id));
+                return RedirectToAction("Index");
+            }
         }
         public async Task<IActionResult> UpdateTable(int id)
         {
@@ -67,7 +84,7 @@ namespace Project.COREMVC.Controllers
             UpdateTableVM updateTableVM = new UpdateTableVM();
             updateTableVM.ID = table.ID;
             updateTableVM.TableNo = table.TableNo;
-            updateTableVM.Status = table.Status;
+            updateTableVM.Situation = table.Situation;
             UpdateTablePageVM utpVm = new UpdateTablePageVM();
             utpVm.UpdateTableVM = updateTableVM;
             return View(utpVm);
@@ -79,7 +96,7 @@ namespace Project.COREMVC.Controllers
             Table table = new Table();
             table.ID = model.UpdateTableVM.ID;
             table.TableNo = model.UpdateTableVM.TableNo;
-            table.Status = model.UpdateTableVM.Status;
+            table.Situation = model.UpdateTableVM.Situation;
             await _tableManager.UpdateAsync(table);
             return RedirectToAction("Index");
 

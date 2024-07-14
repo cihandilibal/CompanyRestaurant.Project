@@ -27,7 +27,8 @@ namespace Project.COREMVC.Controllers
                 ID = x.ID,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
-                MobilePhone = x.MobilePhone
+                MobilePhone = x.MobilePhone,
+                Status = x.Status
             }).ToList();
             GetCustomersPageVM gvpVm = new GetCustomersPageVM()
             {
@@ -55,16 +56,33 @@ namespace Project.COREMVC.Controllers
             await _customerManager.AddAsync(c);
             return RedirectToAction("GetCustomers");
         }
-       
+
         public async Task<IActionResult> DeleteCustomer(int id)
         {
-            _customerManager.Delete(await _customerManager.FindAsync(id));
-            return RedirectToAction("GetCustomers");
+            if (id == null)
+            {
+                TempData["Message"] = "Musteri bulunamadı";
+                return RedirectToAction("GetCustomers");
+            }
+            else
+            {
+                _customerManager.Delete(await _customerManager.FindAsync(id));
+                return RedirectToAction("GetCustomers");
+            }
         }
+
         public async Task<IActionResult> DestroyCustomer(int id)
         {
-           _customerManager.Destroy(await _customerManager.FindAsync(id));
-            return RedirectToAction("GetCustomers");
+            if (id == null)
+            {
+                TempData["Message"] = "Musteri bulunamadı";
+                return RedirectToAction("GetCustomers");
+            }
+            else
+            {
+                _customerManager.Destroy(await _customerManager.FindAsync(id));
+                return RedirectToAction("GetCustomers");
+            }
         }
 
         public async Task<IActionResult> UpdateCustomer(int id)
@@ -91,8 +109,6 @@ namespace Project.COREMVC.Controllers
             await _customerManager.UpdateAsync(customer);
             return RedirectToAction("GetCustomers");
         }
-
-
 
     }
 }

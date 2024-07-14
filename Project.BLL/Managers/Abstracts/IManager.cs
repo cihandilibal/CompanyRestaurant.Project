@@ -17,6 +17,7 @@ namespace Project.BLL.Managers.Abstracts
         Task<List<T>> GetActivesAsync();
         List<T> GetPassives();
         List<T> GetModifieds();
+       
 
         //Modify Commands
         string Add(T item);
@@ -29,7 +30,8 @@ namespace Project.BLL.Managers.Abstracts
         Task UpdateRangeAsync(List<T> list);
         string Destroy(T item);
         string DestroyRange(List<T> list);
-      
+         
+
         //Linq Commands
         List<T> Where(Expression<Func<T, bool>> exp);
         bool Any(Expression<Func<T, bool>> exp);

@@ -1,0 +1,37 @@
+﻿@model Dictionary<DateTime, Dictionary<string, decimal>>
+
+<form method="post">
+    <label for="startDate">Başlangıç Tarihi:</label>
+    <input type="date" id="startDate" name="startDate" required />
+    <label for="endDate">Bitiş Tarihi:</label>
+    <input type="date" id="endDate" name="endDate" required />
+    <button type="submit">Filtrele</button>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Tarih</th>
+                <th>Para Birimi</th>
+                <th>Toplam Satış</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (KeyValuePair<DateTime, Dictionary<string, decimal>> dateGroup in Model)
+            {
+                <tr>
+                    <td rowspan="@dateGroup.Value.Count">@dateGroup.Key.ToShortDateString()</td>
+                    @foreach (KeyValuePair<string, decimal> currencyGroup in dateGroup.Value)
+                    {
+                    <tr>
+                        <td>@currencyGroup.Key</td>
+                        <td>@currencyGroup.Value</td>
+                    </tr>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}

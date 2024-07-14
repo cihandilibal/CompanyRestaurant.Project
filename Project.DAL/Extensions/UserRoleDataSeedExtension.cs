@@ -16,8 +16,8 @@ namespace Project.DAL.Extensions
             IdentityRole<int> appRole = new()
             {
                 Id = 1,
-                Name = "Manager",
-                NormalizedName = "MANAGER",
+                Name = "Admin",
+                NormalizedName = "ADMIN",
                 ConcurrencyStamp = Guid.NewGuid().ToString()
             };
             modelBuilder.Entity<IdentityRole<int>>().HasData(appRole);

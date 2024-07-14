@@ -29,7 +29,8 @@ namespace Project.DAL.Repositories.Abstracts
         Task UpdateRangeAsync(List<T> list);
         void Destroy(T item);
         void DestroyRange(List<T> list);
-
+        
+       
         //Linq Commands
         List<T> Where(Expression<Func<T, bool>> exp);
         bool Any(Expression<Func<T, bool>> exp);
@@ -45,6 +46,6 @@ namespace Project.DAL.Repositories.Abstracts
         List<T> GetFirstDatas(int count);
         Task<T> FindAsync(int id);
          T Find(int id);
-        Task<T> EditAsync(int id1, int id2);
+        
     }
 }
