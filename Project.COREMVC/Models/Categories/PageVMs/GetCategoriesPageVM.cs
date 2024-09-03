@@ -4,6 +4,6 @@ namespace Project.COREMVC.Models.Categories.PageVMs
 {
     public class GetCategoriesPageVM
     {
-        public List<GetCategoriesResponseModel> Categories { get; internal set; }
+        public List<GetCategoriesResponseModel> Categories { get; set; }
     }
 }
